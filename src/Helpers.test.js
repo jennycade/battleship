@@ -1,5 +1,5 @@
 import Gameboard from './Gameboard';
-import { boardGenerator, sum, moveOnePeg, parseCoord } from './Helpers';
+import { boardGenerator, sum, moveOnePeg, parseCoord, alphaToNum } from './Helpers';
 
 test('Sum sums correctly', () => {
   expect(sum([1, 2, 3])).toBe(6);
@@ -58,6 +58,11 @@ test('moveOnePeg moves right on a big board', () => {
   expect(moveOnePeg(coord, 'right')).toBe('ac2');
 });
 
+// test ('moveOnePeg scoots over prefix boundaries on a big board e.g. ba1 --> za1', () => {
+//   const coord = 'ba1';
+//   expect(moveOnePeg(coord, 'left')).toBe('za1');
+// });
+
 // edge cases: z1 <-- aa1
 // errors for off-board? x <-- a1 (GameBoard handles right and down errors?)
 
@@ -81,4 +86,15 @@ test('parseCoord separates coordinates for a multi-letter coord', () => {
   const parsed = parseCoord('ac30')
   expect(parsed[0]).toBe('ac');
   expect(parsed[1]).toBe(30);
+});
+
+/////////////////////
+// alpha to base26 //
+/////////////////////
+test('alphaToNum converts single letter', () => {
+  expect(alphaToNum('c')).toBe(3);
+});
+
+test('alphaToNum converts a two-digit letter code', () => {
+  expect(alphaToNum('aa')).toBe(27);
 });

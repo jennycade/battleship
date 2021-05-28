@@ -1,3 +1,6 @@
+
+const alpha = 'abcdefghijklmnopqrstuvwxyz';
+
 export function sum (arr) {
   return arr.reduce((total, value) => total + value, 0);
 }
@@ -33,7 +36,6 @@ export function parseCoord(coord) {
 }
 
 export function moveOnePeg(coord, dir) {
-  const alpha = 'abcdefghijklmnopqrstuvwxyz';
 
   const [letter, num] = parseCoord(coord);
   let [newLetter, newNum] = [letter, num];
@@ -45,13 +47,34 @@ export function moveOnePeg(coord, dir) {
     newNum = num - 1;
   }
 
+  let prefix = '';
+  let l = '';
+  if (letter.length === 1) {
+    l = letter;
+  } else {
+    const last = letter.length-1
+    prefix = letter.slice(0, last);
+    l = letter[last];
+  }
   if (dir === 'right') {
     // next letter?
-    newLetter = alpha[alpha.indexOf(letter) + 1];
+    newLetter = prefix + alpha[alpha.indexOf(l) + 1];
   }
   if (dir === 'left') {
-    newLetter = alpha[alpha.indexOf(letter) - 1];
+    newLetter = prefix + alpha[alpha.indexOf(l) - 1];
   }
 
   return `${newLetter}${newNum}`;
+}
+
+export function alphaToNum(str) {
+  // each character is a digit representing 1–26
+  // split into characters
+  let decimal = 0;
+  for (let i=0; i<str.length; i++) {
+    const power = str.length - i - 1;
+    decimal += (alpha.indexOf(str[i]) + 1) * 26**power;
+  }
+
+  return decimal;
 }
