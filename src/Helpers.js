@@ -21,3 +21,20 @@ export function boardGenerator(size) {
 
   return board;
 }
+
+export function parseCoord(coord) {
+  // returns array: [letterStr, numberInt]
+  const pattern = /(?<letter>[a-z]+)(?<number>\d+)/mg
+  const matches = pattern.exec(coord);
+  return [
+    matches['groups']['letter'],
+    parseInt(matches['groups']['number']),
+  ];
+}
+
+export function moveOnePeg(coord, dir, size) {
+  const alpha = 'abcdefghijklmnopqrstuvwxyz';
+  if (dir === 'down') {
+
+  }
+}

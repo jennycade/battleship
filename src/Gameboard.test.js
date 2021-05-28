@@ -10,14 +10,31 @@ test('Has function placeShip()', () => {
   );
 });
 
-// test('Places a ship of length 1 at A1 on the board', () => {
-//   const testShip = Ship(1);
-//   const gb = Gameboard();
-//   gb.placeShip(testShip, 'a1');
-//   expect(gb.query('a1', 'self')).toMatchObject({
-//     a1: {
-//       ship: testShip,
-//       pos: 1,
-//     }
-//   })
-// })
+test('Assigns a ship with placeShip', () => {
+  const testShip = Ship(1);
+  const gb = Gameboard(5);
+  gb.placeShip(testShip, 'a1', 'down');
+  const answer = gb.query('a1', 'self');
+  expect(answer.ship).toMatchObject(testShip);
+});
+
+// test('Correctly places ship of length 2 (not going off the board', () => {
+//   const testShip = Ship(3);
+//   const gb = Gameboard(5);
+//   gb.placeShip(testShip, 'a1', 'down');
+//   //  ABCDE
+//   // 1x----
+//   // 2x----
+//   // 3x----
+//   // 4-----
+//   // 5-----
+//   const a1 = gb.query('a1', 'self');
+//   const a2 = gb.query('a2', 'self');
+//   const a3 = gb.query('a3', 'self');
+//   const a4 = gb.query('a4', 'self');
+
+//   expect(a1.ship).toMatchObject(testShip);
+//   expect(a2.ship).toMatchObject(testShip);
+//   expect(a3.ship).toMatchObject(testShip);
+//   expect(a4).toBe('');
+// });

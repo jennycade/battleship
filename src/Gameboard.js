@@ -1,13 +1,20 @@
 // import Ship from './Ship';
+import { boardGenerator } from './Helpers';
 
-const Gameboard = () => {
-  const board = {
-    a1: null,
-    a2: null,
-  }
+const Gameboard = (size) => {
+  const board = boardGenerator(size);
 
-  const placeShip = (ship) => {
+  const placeShip = (ship, coord, dir) => {
+    // calculate spots
+    const numPegs = ship.pegs.length;
+    for (let i=0; i<numPegs; i++) {
+      
+    }
 
+    // update board
+    board[coord] = {
+      ship: ship,
+    }
   }
 
   const query = (coord, who) => {
@@ -16,6 +23,7 @@ const Gameboard = () => {
       // show what ships are there
       return board[coord];
     }
+    // else filter out ships but show hits and misses
   }
 
   return { placeShip, query };

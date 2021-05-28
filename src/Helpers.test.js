@@ -1,4 +1,5 @@
-import { boardGenerator, sum } from './Helpers';
+import Gameboard from './Gameboard';
+import { boardGenerator, sum, moveOnePeg, parseCoord } from './Helpers';
 
 test('Sum sums correctly', () => {
   expect(sum([1, 2, 3])).toBe(6);
@@ -25,4 +26,22 @@ test('boardGenerator makes a board bigger than 26', () => {
       aa30: '',
     }
   );
+});
+
+// test('moveOnePeg returns coord below', () => {
+//   const gb = Gameboard(3);
+//   const coord = 'b2';
+//   expect(moveOnePeg(coord, 'down', 3)).toBe('b3');
+// });
+
+test('parseCoord separates coordinates for single-letter coord', () => {
+  const parsed = parseCoord('b2')
+  expect(parsed[0]).toBe('b');
+  expect(parsed[1]).toBe(2);
+});
+
+test('parseCoord separates coordinates for another single-letter coord', () => {
+  const parsed = parseCoord('c3')
+  expect(parsed[0]).toBe('c');
+  expect(parsed[1]).toBe(3);
 });
