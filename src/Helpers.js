@@ -78,3 +78,7 @@ export function alphaToNum(str) {
 
   return decimal;
 }
+
+export function numToAlpha(num) {
+  return 'o';
+}

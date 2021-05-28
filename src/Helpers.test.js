@@ -1,5 +1,4 @@
-import Gameboard from './Gameboard';
-import { boardGenerator, sum, moveOnePeg, parseCoord, alphaToNum } from './Helpers';
+import { boardGenerator, sum, moveOnePeg, parseCoord, alphaToNum, numToAlpha } from './Helpers';
 
 test('Sum sums correctly', () => {
   expect(sum([1, 2, 3])).toBe(6);
@@ -88,13 +87,21 @@ test('parseCoord separates coordinates for a multi-letter coord', () => {
   expect(parsed[1]).toBe(30);
 });
 
-/////////////////////
-// alpha to base26 //
-/////////////////////
+////////////////
+// alphaToNum //
+////////////////
 test('alphaToNum converts single letter', () => {
   expect(alphaToNum('c')).toBe(3);
 });
 
 test('alphaToNum converts a two-digit letter code', () => {
   expect(alphaToNum('aa')).toBe(27);
+});
+
+////////////////
+// numToAlpha //
+////////////////
+
+test('numToAlpha converts a single letter', () => {
+  expect(numToAlpha(15)).toBe('o');
 });
