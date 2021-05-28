@@ -32,9 +32,26 @@ export function parseCoord(coord) {
   ];
 }
 
-export function moveOnePeg(coord, dir, size) {
+export function moveOnePeg(coord, dir) {
   const alpha = 'abcdefghijklmnopqrstuvwxyz';
-  if (dir === 'down') {
 
+  const [letter, num] = parseCoord(coord);
+  let [newLetter, newNum] = [letter, num];
+
+  if (dir === 'down') {
+    newNum = num + 1;
   }
+  if (dir === 'up') {
+    newNum = num - 1;
+  }
+
+  if (dir === 'right') {
+    // next letter?
+    newLetter = alpha[alpha.indexOf(letter) + 1];
+  }
+  if (dir === 'left') {
+    newLetter = alpha[alpha.indexOf(letter) - 1];
+  }
+
+  return `${newLetter}${newNum}`;
 }

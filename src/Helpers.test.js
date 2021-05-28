@@ -28,11 +28,42 @@ test('boardGenerator makes a board bigger than 26', () => {
   );
 });
 
-// test('moveOnePeg returns coord below', () => {
-//   const gb = Gameboard(3);
-//   const coord = 'b2';
-//   expect(moveOnePeg(coord, 'down', 3)).toBe('b3');
-// });
+
+//////////////////
+// moveOnePeg() //
+//////////////////
+
+test('moveOnePeg returns coord below', () => {
+  const coord = 'b2';
+  expect(moveOnePeg(coord, 'down')).toBe('b3');
+});
+
+test('moveOnePeg moves up', () => {
+  const coord = 'b2';
+  expect(moveOnePeg(coord, 'up')).toBe('b1');
+});
+
+test('moveOnePeg moves right on a small board', () => {
+  const coord = 'b2';
+  expect(moveOnePeg(coord, 'right')).toBe('c2');
+});
+
+test('moveOnePeg moves left on a small board', () => {
+  const coord = 'b2';
+  expect(moveOnePeg(coord, 'left')).toBe('a2');
+});
+
+test('moveOnePeg moves right on a big board', () => {
+  const coord = 'ab2';
+  expect(moveOnePeg(coord, 'right')).toBe('ac2');
+});
+
+// edge cases: z1 <-- aa1
+// errors for off-board? x <-- a1 (GameBoard handles right and down errors?)
+
+//////////////////
+// parseCoord() //
+//////////////////
 
 test('parseCoord separates coordinates for single-letter coord', () => {
   const parsed = parseCoord('b2')
@@ -44,4 +75,10 @@ test('parseCoord separates coordinates for another single-letter coord', () => {
   const parsed = parseCoord('c3')
   expect(parsed[0]).toBe('c');
   expect(parsed[1]).toBe(3);
+});
+
+test('parseCoord separates coordinates for a multi-letter coord', () => {
+  const parsed = parseCoord('ac30')
+  expect(parsed[0]).toBe('ac');
+  expect(parsed[1]).toBe(30);
 });
