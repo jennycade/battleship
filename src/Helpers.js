@@ -47,21 +47,17 @@ export function moveOnePeg(coord, dir) {
     newNum = num - 1;
   }
 
-  let prefix = '';
-  let l = '';
-  if (letter.length === 1) {
-    l = letter;
-  } else {
-    const last = letter.length-1
-    prefix = letter.slice(0, last);
-    l = letter[last];
-  }
+  
   if (dir === 'right') {
     // next letter?
-    newLetter = prefix + alpha[alpha.indexOf(l) + 1];
+    newLetter = numToAlpha(alphaToNum(letter) + 1);
   }
   if (dir === 'left') {
-    newLetter = prefix + alpha[alpha.indexOf(l) - 1];
+    // console.log(`Letter ${letter} = number ${alphaToNum(letter)}`);
+    // console.log(`${alphaToNum(letter)} - 1 = ${alphaToNum(letter) - 1}`);
+    // console.log(`The letter code for number ${alphaToNum(letter) - 1} is ${numToAlpha(alphaToNum(letter) - 1)}`);
+    newLetter = numToAlpha(alphaToNum(letter) - 1);
+    // console.log(`The letter to the left of ${letter} is ${newLetter}`);
   }
 
   return `${newLetter}${newNum}`;

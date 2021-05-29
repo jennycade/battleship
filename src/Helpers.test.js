@@ -134,6 +134,10 @@ test('numToAlpha converts a three-letter code', () => {
   expect(numToAlpha(1*26**2 + 2*26 + 3)).toBe('abc');
 });
 
+test('numToAlpha converts 52 to az', () => {
+  expect(numToAlpha(52)).toBe('az');
+});
+
 ///////////
 // log26 //
 ///////////

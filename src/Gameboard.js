@@ -7,6 +7,7 @@ const Gameboard = (size) => {
   const placeShip = (ship, coord, dir) => {
     // calculate spots
     const numPegs = ship.pegs.length;
+    let peg = coord;
     for (let i=0; i<numPegs; i++) {
       
     }
