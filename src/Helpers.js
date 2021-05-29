@@ -80,5 +80,19 @@ export function alphaToNum(str) {
 }
 
 export function numToAlpha(num) {
-  return 'o';
+  if (num <= 26) {
+    return alpha.slice(num-1, num);
+  }
+
+  let n = num;
+
+  let digit = Math.floor(n / 26);
+
+  n = num % 26;
+  
+  return numToAlpha(digit) + numToAlpha(n);
+}
+
+export function log26(num) {
+  return Math.log(num) / Math.log(26);
 }

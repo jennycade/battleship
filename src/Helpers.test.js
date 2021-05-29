@@ -1,4 +1,12 @@
-import { boardGenerator, sum, moveOnePeg, parseCoord, alphaToNum, numToAlpha } from './Helpers';
+import {
+  boardGenerator,
+  sum,
+  moveOnePeg,
+  parseCoord,
+  alphaToNum,
+  numToAlpha,
+  log26,
+} from './Helpers';
 
 test('Sum sums correctly', () => {
   expect(sum([1, 2, 3])).toBe(6);
@@ -105,3 +113,31 @@ test('alphaToNum converts a two-digit letter code', () => {
 test('numToAlpha converts a single letter', () => {
   expect(numToAlpha(15)).toBe('o');
 });
+
+test('numToAlpha converts another single letter', () => {
+  expect(numToAlpha(5)).toBe('e');
+});
+
+test('numToAlpha converts a two-letter code', () => {
+  expect(numToAlpha(27)).toBe('aa');
+});
+
+test('numToAlpha converts another two-letter code', () => {
+  expect(numToAlpha(2*26+2)).toBe('bb');
+});
+
+test('numToAlpha converts yet another two-letter code', () => {
+  expect(numToAlpha(2*26+3)).toBe('bc');
+});
+
+test('numToAlpha converts a three-letter code', () => {
+  expect(numToAlpha(1*26**2 + 2*26 + 3)).toBe('abc');
+});
+
+///////////
+// log26 //
+///////////
+
+test('log26 calculates log base 26 of 26 correctly', () => {
+  expect(log26(26)).toBe(1);
+})
