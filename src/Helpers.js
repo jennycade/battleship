@@ -6,6 +6,10 @@ export function sum (arr) {
 }
 
 export function boardGenerator(size) {
+  if (size > 26) {
+    // default to max size 26 x 26
+    size = 26;
+  }
   const alpha = 'abcdefghijklmnopqrstuvwxyz';
   let board = {};
   for (let i=0; i<size; i++) {
@@ -53,42 +57,16 @@ export function moveOnePeg(coord, dir) {
     newLetter = numToAlpha(alphaToNum(letter) + 1);
   }
   if (dir === 'left') {
-    // console.log(`Letter ${letter} = number ${alphaToNum(letter)}`);
-    // console.log(`${alphaToNum(letter)} - 1 = ${alphaToNum(letter) - 1}`);
-    // console.log(`The letter code for number ${alphaToNum(letter) - 1} is ${numToAlpha(alphaToNum(letter) - 1)}`);
     newLetter = numToAlpha(alphaToNum(letter) - 1);
-    // console.log(`The letter to the left of ${letter} is ${newLetter}`);
   }
 
   return `${newLetter}${newNum}`;
 }
 
 export function alphaToNum(str) {
-  // each character is a digit representing 1–26
-  // split into characters
-  let decimal = 0;
-  for (let i=0; i<str.length; i++) {
-    const power = str.length - i - 1;
-    decimal += (alpha.indexOf(str[i]) + 1) * 26**power;
-  }
-
-  return decimal;
+  return alpha.indexOf(str) + 1
 }
 
 export function numToAlpha(num) {
-  if (num <= 26) {
-    return alpha.slice(num-1, num);
-  }
-
-  let n = num;
-
-  let digit = Math.floor(n / 26);
-
-  n = num % 26;
-  
-  return numToAlpha(digit) + numToAlpha(n);
-}
-
-export function log26(num) {
-  return Math.log(num) / Math.log(26);
+  return alpha.slice(num-1, num);
 }
