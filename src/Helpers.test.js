@@ -91,6 +91,6 @@ test('numToAlpha converts another single letter', () => {
   expect(numToAlpha(5)).toBe('e');
 });
 
-///////////
-// log26 //
-///////////
+//////////////////////
+// verifyPegOnBoard //
+//////////////////////

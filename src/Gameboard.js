@@ -1,5 +1,5 @@
 // import Ship from './Ship';
-import { boardGenerator } from './Helpers';
+import { boardGenerator, moveOnePeg } from './Helpers';
 
 const Gameboard = (size) => {
   const board = boardGenerator(size);
@@ -9,12 +9,13 @@ const Gameboard = (size) => {
     const numPegs = ship.pegs.length;
     let peg = coord;
     for (let i=0; i<numPegs; i++) {
-      
-    }
-
-    // update board
-    board[coord] = {
-      ship: ship,
+      // assign ship
+      board[peg] = {
+        ship,
+        pos: i,
+      }
+      // find coordinate for next peg that the ship goes in
+      peg = moveOnePeg(peg, dir);
     }
   }
 
