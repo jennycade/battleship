@@ -21,12 +21,16 @@ const Gameboard = (size) => {
   }
 
   const receiveAttack = (coord) => {
-    // sends a hit through
-    if (board[coord].ship)
-    board[coord].ship.hit(board[coord].pos);
+    if (board[coord].ship) {
+      // sends a hit through
+      board[coord].ship.hit(board[coord].pos);
 
-    // marks board position as hit
-    board[coord].hit = 'hit';
+      // marks board position as hit
+      board[coord].hit = 'hit';
+    } else {
+      board[coord].hit = 'miss';
+    }
+    
   }
 
   const verifyCoord = (coord) => {

@@ -72,7 +72,7 @@ test('receiveAttack() marks a hit ship as hit', () => {
 });
 
 // marks a hit
-test('receiveAttack() marks board position as hit', () => {
+test('receiveAttack() correctly marks board position as hit', () => {
   const testShip = Ship(3);
   const gb = Gameboard(5);
   gb.placeShip(testShip, 'a1', 'down');
@@ -90,7 +90,7 @@ test('receiveAttack() marks board position as hit', () => {
 });
 
 // marks a miss
-test('receiveAttack() marks board position as hit', () => {
+test('receiveAttack() correctly marks board position as miss', () => {
   const testShip = Ship(3);
   const gb = Gameboard(5);
   gb.placeShip(testShip, 'a1', 'down');
