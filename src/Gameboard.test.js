@@ -36,6 +36,74 @@ test('placeShip() correctly assigns ship of length 3 (not going off the board', 
   expect(a1.ship).toMatchObject(testShip);
   expect(a2.ship).toMatchObject(testShip);
   expect(a3.ship).toMatchObject(testShip);
-  expect(a4).toBe('');
+  expect(a4.ship).toBe(null);
 });
 
+// verifyCoord()
+
+test('verifyCoord() returns true when coordinate exists', () => {
+  const gb = Gameboard(5);
+  expect(gb.verifyCoord('b3')).toBe(true);
+});
+
+test('verifyCoord() returns false when coordinate does not exist', () => {
+  const gb = Gameboard(5);
+  expect(gb.verifyCoord('z3')).toBe(false);
+});
+
+// receiveAttack()
+
+test('receiveAttack() marks a hit ship as hit', () => {
+  const testShip = Ship(3);
+  const gb = Gameboard(5);
+  gb.placeShip(testShip, 'a1', 'down');
+  //  ABCDE
+  // 1x----
+  // 2x----
+  // 3x----
+  // 4-----
+  // 5-----
+
+  gb.receiveAttack('a2');
+
+  const a1 = gb.query('a1', 'self');
+
+  expect(a1.ship.pegs).toEqual([0, 1, 0]);
+});
+
+// marks a hit
+test('receiveAttack() marks board position as hit', () => {
+  const testShip = Ship(3);
+  const gb = Gameboard(5);
+  gb.placeShip(testShip, 'a1', 'down');
+  //  ABCDE
+  // 1x----
+  // 2x----
+  // 3x----
+  // 4-----
+  // 5-----
+
+  gb.receiveAttack('a2');
+
+  const a2 = gb.query('a2', 'self');
+  expect(a2.hit).toBe('hit');
+});
+
+// marks a miss
+test('receiveAttack() marks board position as hit', () => {
+  const testShip = Ship(3);
+  const gb = Gameboard(5);
+  gb.placeShip(testShip, 'a1', 'down');
+  //  ABCDE
+  // 1x----
+  // 2x----
+  // 3x----
+  // 4-----
+  // 5-----
+
+  gb.receiveAttack('d3');
+
+  const a2 = gb.query('d3', 'self');
+  expect(a2.hit).toBe('miss');
+});
+// marks a sunk ship

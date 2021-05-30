@@ -16,7 +16,11 @@ export function boardGenerator(size) {
     const letter = alpha.slice(i, (i)+1);
     // number
     for (let j=1; j<=size; j++) {
-      board[`${letter}${j}`] = '';
+      board[`${letter}${j}`] = {
+        ship: null,
+        pos: null,
+        hit: '',
+      };
     }
   }
 

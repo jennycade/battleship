@@ -17,10 +17,10 @@ test('Sum sums a different sum correctly', () => {
 
 test('boardGenerator makes a 2x2 board', () => {
   const board = {
-    a1: '',
-    a2: '',
-    b1: '',
-    b2: '',
+    a1: expect.any(Object),
+    a2: expect.any(Object),
+    b1: expect.any(Object),
+    b2: expect.any(Object),
   };
   expect(boardGenerator(2)).toMatchObject(board);
 });
@@ -90,7 +90,3 @@ test('numToAlpha converts a single letter', () => {
 test('numToAlpha converts another single letter', () => {
   expect(numToAlpha(5)).toBe('e');
 });
-
-//////////////////////
-// verifyPegOnBoard //
-//////////////////////
