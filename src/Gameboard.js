@@ -3,8 +3,12 @@ import { boardGenerator, moveOnePeg } from './Helpers';
 
 const Gameboard = (size) => {
   const board = boardGenerator(size);
+  let ships = [];
 
   const placeShip = (ship, coord, dir) => {
+    // add to ships
+    ships = [...ships, ship];
+
     // calculate spots
     const numPegs = ship.pegs.length;
     let peg = coord;
@@ -37,7 +41,19 @@ const Gameboard = (size) => {
     
   }
 
-  const verifyCoord = (coord) => {
+  const areAllShipsSunk = () => {
+    if (ships.length === 0) {
+      throw new Error('No ships have been placed.');
+    }
+    for (let i=0; i<ships.length; i++) {
+      if (ships[i].isSunk() === false) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  const verifyCoord = (coord) => { // TODO: Use this!
     return Object.keys(board).includes(coord);
   }
 
@@ -53,6 +69,7 @@ const Gameboard = (size) => {
   return {
     placeShip, 
     receiveAttack,
+    areAllShipsSunk,
     query, verifyCoord
   };
 }

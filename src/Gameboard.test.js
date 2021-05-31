@@ -51,6 +51,8 @@ test('verifyCoord() returns false when coordinate does not exist', () => {
   expect(gb.verifyCoord('z3')).toBe(false);
 });
 
+// TODO: Make some things use verifyCoord()!
+
 // receiveAttack()
 
 test('receiveAttack() marks a hit ship as hit', () => {
@@ -143,6 +145,60 @@ test('You cannot hit the same spot twice', () => {
     gb.receiveAttack('a2');
   }).toThrow();
 });
+
+// areAllShipsSunk()
+test('Gameboard knows when all ships are NOT sunk (1 ship)', () => {
+  const testShip = Ship(3);
+  const gb = Gameboard(5);
+  gb.placeShip(testShip, 'a1', 'down');
+  //  ABCDE
+  // 1x----
+  // 2x----
+  // 3x----
+  // 4-----
+  // 5-----
+
+  gb.receiveAttack('a2');
+  expect(gb.areAllShipsSunk()).toBe(false);
+});
+
+test('Gameboard knows when all ships are NOT sunk (2 ships)', () => {
+  const testShip = Ship(3);
+  const gb = Gameboard(5);
+  gb.placeShip(testShip, 'a1', 'down');
+  gb.placeShip(Ship(2), 'b1', 'right');
+  //  ABCDE
+  // 1xxx--
+  // 2x----
+  // 3x----
+  // 4-----
+  // 5-----
+
+  gb.receiveAttack('a1');
+  gb.receiveAttack('a2');
+  gb.receiveAttack('a3');
+  expect(gb.areAllShipsSunk()).toBe(false);
+});
+
+test('Gameboard knows when all ships are sunk', () => {
+  const testShip = Ship(1);
+  const gb = Gameboard(5);
+  gb.placeShip(testShip, 'a2', 'down');
+  //  ABCDE
+  // 1-----
+  // 2x----
+  // 3-----
+  // 4-----
+  // 5-----
+
+  gb.receiveAttack('a2');
+  expect(gb.areAllShipsSunk()).toBe(true);
+});
+
+test('allShipsAreSunk throws an error if no ships have been placed', () => {
+  const gb = Gameboard(5);
+  expect(() => { gb.areAllShipsSunk() }).toThrow();
+})
 
 // query doesn't show active ships to opponent
 // query shows sunk ships to opponent
