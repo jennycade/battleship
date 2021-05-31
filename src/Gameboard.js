@@ -14,6 +14,7 @@ const Gameboard = (size) => {
       board[peg] = {
         ship,
         pos: i,
+        hit: '',
       }
       // set coordinate for next peg that the ship goes in
       peg = moveOnePeg(peg, dir);
@@ -21,6 +22,9 @@ const Gameboard = (size) => {
   }
 
   const receiveAttack = (coord) => {
+    if (board[coord].hit !== '') {
+      throw new Error(`Coordinate ${coord} has already been hit. Pick a new coordinate.`);
+    }
     if (board[coord].ship) {
       // sends a hit through
       board[coord].ship.hit(board[coord].pos);

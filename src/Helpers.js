@@ -15,7 +15,7 @@ export function boardGenerator(size) {
   for (let i=0; i<size; i++) {
     const letter = alpha.slice(i, (i)+1);
     // number
-    for (let j=1; j<=size; j++) {
+    for (let j=1; j<=size; j++) { // TODO: Move this logic to Gameboard, just leave the part that makes the coordinates.
       board[`${letter}${j}`] = {
         ship: null,
         pos: null,

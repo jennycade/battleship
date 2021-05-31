@@ -103,7 +103,46 @@ test('receiveAttack() correctly marks board position as miss', () => {
 
   gb.receiveAttack('d3');
 
-  const a2 = gb.query('d3', 'self');
-  expect(a2.hit).toBe('miss');
+  const d3 = gb.query('d3', 'self');
+  expect(d3.hit).toBe('miss');
 });
 // marks a sunk ship
+test('Attacks sink a ship', () => {
+  const testShip = Ship(3);
+  const gb = Gameboard(5);
+  gb.placeShip(testShip, 'a1', 'down');
+  //  ABCDE
+  // 1x----
+  // 2x----
+  // 3x----
+  // 4-----
+  // 5-----
+
+  gb.receiveAttack('a1');
+  gb.receiveAttack('a2');
+  gb.receiveAttack('a3');
+
+  const a2 = gb.query('a2', 'self');
+  expect(a2.ship.isSunk()).toBe(true);
+});
+
+// doesn't allow attack where there's already been an attack
+test('You cannot hit the same spot twice', () => {
+  const testShip = Ship(3);
+  const gb = Gameboard(5);
+  gb.placeShip(testShip, 'a1', 'down');
+  //  ABCDE
+  // 1x----
+  // 2x----
+  // 3x----
+  // 4-----
+  // 5-----
+
+  gb.receiveAttack('a2');
+  expect( () => {
+    gb.receiveAttack('a2');
+  }).toThrow();
+});
+
+// query doesn't show active ships to opponent
+// query shows sunk ships to opponent
