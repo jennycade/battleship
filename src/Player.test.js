@@ -14,8 +14,7 @@ test('Random attack', () => {
   const opponent = Gameboard(5);
   const p = Player(gb, opponent);
   
-  p.randomAttack() // as long as it doesn't throw we're cool!
-  console.log(opponent.query())
+  console.log(p.randomAttack()) // as long as it doesn't throw we're cool!
 });
 
 // place ships?
