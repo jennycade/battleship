@@ -14,8 +14,12 @@ test('Random attack', () => {
   const opponent = Gameboard(5);
   const p = Player(gb, opponent);
   
-  console.log(p.randomAttack()) // as long as it doesn't throw we're cool!
+  p.randomAttack() // as long as it doesn't throw we're cool!
 });
+
+// TODO: go back for some testing
+// Player.attack() actually lands an attack
+
 
 // place ships?
 // attack

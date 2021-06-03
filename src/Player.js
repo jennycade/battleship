@@ -18,7 +18,10 @@ const Player = (ownGameboard, oppGameboard) => {
     attack(randomCoord);
 
     // add to attackedCoords
+    attackedCoords.push(randomCoord);
+
     // remove from remainingCoords
+    remainingCoords.splice(randomi, 1);
 
     return randomCoord;
   }
