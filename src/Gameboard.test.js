@@ -198,7 +198,35 @@ test('Gameboard knows when all ships are sunk', () => {
 test('allShipsAreSunk throws an error if no ships have been placed', () => {
   const gb = Gameboard(5);
   expect(() => { gb.areAllShipsSunk() }).toThrow();
-})
+});
+
+
 
 // query doesn't show active ships to opponent
+test('query doesn\'t show active ships to opponent', () => {
+  const testShip = Ship(3);
+  const gb = Gameboard(5);
+  gb.placeShip(testShip, 'a1', 'down');
+  //  ABCDE
+  // 1x----
+  // 2x----
+  // 3x----
+  // 4-----
+  // 5-----
+
+  gb.receiveAttack('a2');
+
+  const a1 = gb.query('a1', 'opponent');
+
+  expect(a1).not.toMatchObject({ship: testShip});
+})
+
 // query shows sunk ships to opponent
+
+
+
+test('getCoords shares list of coordinates (for AI)', () => {
+  const gb = Gameboard(2);
+  const coords = ['a1', 'a2', 'b1', 'b2'];
+  expect(gb.getCoords()).toEqual(coords);
+});

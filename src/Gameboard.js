@@ -53,6 +53,10 @@ const Gameboard = (size) => {
     return true;
   }
 
+  const getCoords = () => {
+    return Object.keys(board);
+  }
+
   const verifyCoord = (coord) => { // TODO: Use this!
     return Object.keys(board).includes(coord);
   }
@@ -64,13 +68,17 @@ const Gameboard = (size) => {
       return board[coord];
     }
     // else filter out ships but show hits and misses
+    return {
+      hit: board[coord].hit,
+    }
   }
 
   return {
     placeShip, 
     receiveAttack,
     areAllShipsSunk,
-    query, verifyCoord
+    query, verifyCoord, 
+    getCoords,
   };
 }
 
