@@ -24,10 +24,27 @@ const Game = (size) => {
     return turn;
   }
 
+  const playTurn = (player, coord = '') => {
+    if (player === turn) {
+      // human play
+      if (player.type === 'human') {
+        player.attack(coord);
+      }
+      // ai play
+      if (player.type === 'ai') {
+        setTimeout(() => { player.attack() }, 1000);
+      }
+
+      // switch turns
+      switchTurn();
+    }
+  }
+
   return {
     players,
     switchTurn,
     whoseTurn,
+    playTurn,
   };
 
   
