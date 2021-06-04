@@ -4,7 +4,7 @@ import Player from './Player';
 test('Player can attack', () => {
   const gb = Gameboard(5);
   const opponent = Gameboard(5);
-  const p = Player(gb, opponent);
+  const p = Player('human', gb, opponent);
   
   p.attack('a1') // as long as it doesn't throw we're cool!
 });
@@ -12,7 +12,7 @@ test('Player can attack', () => {
 test('Player attack lands', () => {
   const gb = Gameboard(5);
   const opponent = Gameboard(5);
-  const p = Player(gb, opponent);
+  const p = Player('human', gb, opponent);
 
   p.attack('a1');
 
@@ -23,21 +23,11 @@ test('Player attack lands', () => {
 test('Random attack', () => {
   const gb = Gameboard(5);
   const opponent = Gameboard(5);
-  const p = Player(gb, opponent);
-
-  p.turnOnAI();
+  const p = Player('ai', gb, opponent);
 
   console.log(p);
   
-  p.randomAttack() // as long as it doesn't throw we're cool!
-});
-
-test('Player can be switched to ai.', () => {
-  const gb = Gameboard(5);
-  const opponent = Gameboard(5);
-  const p = Player(gb, opponent);
-
-  p.turnOnAI();
+  p.attack() // as long as it doesn't throw we're cool!
 });
 
 // TODO: go back for some testing

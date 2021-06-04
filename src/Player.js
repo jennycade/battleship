@@ -1,15 +1,9 @@
 import { boardGenerator } from './Helpers';
 
-const Player = (ownGameboard, oppGameboard) => {
+const Player = (type, ownGameboard, oppGameboard) => {
   let attackedCoords = [];
   const allCoords = oppGameboard.getCoords();
   let remainingCoords = [...allCoords];
-  
-  let type = 'human';
-
-  const turnOnAI = () => {
-    type = 'ai';
-  }
 
   const attack = (coord) => {
     oppGameboard.receiveAttack(coord);
@@ -33,10 +27,10 @@ const Player = (ownGameboard, oppGameboard) => {
   }
 
   if (type === 'human') {
-    return { attack, turnOnAI };
+    return { attack };
   }
   if (type === 'ai') {
-    return { randomAttack };
+    return { attack: randomAttack };
   }
 }
 
