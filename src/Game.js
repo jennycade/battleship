@@ -10,9 +10,27 @@ const Game = (size) => {
 
   const players = [p1, p2];
 
+  let turn = p1;
+
+  const switchTurn = () => {
+    if (turn === p1) {
+      turn = p2;
+    } else {
+      turn = p1;
+    }
+  }
+
+  const whoseTurn = () => {
+    return turn;
+  }
+
   return {
     players,
+    switchTurn,
+    whoseTurn,
   };
+
+  
 }
 
 export default Game;
