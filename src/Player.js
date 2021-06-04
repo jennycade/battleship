@@ -4,6 +4,12 @@ const Player = (ownGameboard, oppGameboard) => {
   let attackedCoords = [];
   const allCoords = oppGameboard.getCoords();
   let remainingCoords = [...allCoords];
+  
+  let type = 'human';
+
+  const turnOnAI = () => {
+    type = 'ai';
+  }
 
   const attack = (coord) => {
     oppGameboard.receiveAttack(coord);
@@ -26,7 +32,12 @@ const Player = (ownGameboard, oppGameboard) => {
     return randomCoord;
   }
 
-  return { attack, randomAttack };
+  if (type === 'human') {
+    return { attack, turnOnAI };
+  }
+  if (type === 'ai') {
+    return { randomAttack };
+  }
 }
 
 export default Player;
