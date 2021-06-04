@@ -1,4 +1,3 @@
-import { boardGenerator } from './Helpers';
 
 const Player = (type, ownGameboard, oppGameboard) => {
   let attackedCoords = [];

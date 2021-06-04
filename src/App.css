@@ -1,38 +1,31 @@
+body {
+  background-color: black;
+}
+
 .App {
   text-align: center;
+  perspective: 500px;
+}
+.gameboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  height: 50%;
+}
+.opponent {
+  width: 50%;
+  margin: 0 auto;
+}
+.player {
+  width: 50%;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  transform: rotateX(60deg)
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.peg {
+  border: 1px solid white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.opponent .peg:hover {
+  background-color: green;
 }
