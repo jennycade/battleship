@@ -14,6 +14,7 @@ const Game = (size) => {
   let turn = p1;
 
   const switchTurn = () => {
+    console.log('Switching turns');
     if (turn === p1) {
       turn = p2;
     } else {
@@ -26,6 +27,7 @@ const Game = (size) => {
   }
 
   const playTurn = (player, coord = '') => {
+    console.log(`Attack!`)
     if (player === turn) {
       // human play
       if (player.type === 'human') {
@@ -33,13 +35,27 @@ const Game = (size) => {
       }
       // ai play
       if (player.type === 'ai') {
-        setTimeout(() => { player.attack() }, 1000);
+        player.attack()
+        // setTimeout(() => { player.attack() }, 1000);
       }
 
       // switch turns
       switchTurn();
     }
   }
+
+  let mode = 'game';
+
+  while (mode === 'game') {
+    if (turn.type === 'human') {
+      const coord = prompt(`Attack coordinate: `);
+    }
+    while (turn.type === 'ai') {
+      playTurn(turn);
+    }
+    mode = 'exit';
+  }
+  
 
   return {
     getPlayers,

@@ -49,7 +49,7 @@ const GameboardComponent = (props) => {
 
       <div className="pegs" style={ pegsStyle }>
         {
-          coords.map(coord => <PegComponent key={coord} coord={coord} player={player} play={play} />)
+          coords.map(coord => <PegComponent key={coord} coord={coord} player={player} play={play} gameboard={gameboard} />)
         }
       </div>
     </div>
