@@ -1,50 +1,41 @@
+import { boardGenerator } from "./Helpers";
+
 const GameboardComponent = (props) => {
   const { owner, size } = props;
+
+  const coords = boardGenerator(size);
+  const alpha = 'abcdefghijklmnopqrstuvwxyz';
+  const xlabels = alpha.slice(0, size).split('');
+  const ylabels = [];
+  for (let i=1; i<=size; i++) {
+    ylabels.push(i);
+  }
+
+  let sizingStyle = {
+    
+  }
+
   return (
-    <div className={`${owner} gameboard`}>
-        <div className="blankspace"></div>
+    <div className={`${owner} gameboard sizing`}>
+      <div className="xlabels">
 
-        <div className="label xcoord">A</div>
-        <div className="label xcoord">B</div>
-        <div className="label xcoord">C</div>
-        <div className="label xcoord">D</div>
-        <div className="label xcoord">E</div>
-        <div className="label ycoord">1</div>
+        {
+          xlabels.map(letter => <div key={letter} className="label xlabel">{letter.toUpperCase()}</div>)
+        }
 
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-
-        <div className="label ycoord">2</div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-
-        <div className="label ycoord">3</div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-
-        <div className="label ycoord">4</div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-
-        <div className="label ycoord">5</div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
-        <div className="peg"></div>
       </div>
+      <div className="ylabels">
+        {
+          ylabels.map(num => <div key={num} className="label ylabel">{num}</div>)
+        }
+      </div>
+
+      <div className="pegs">
+        {
+          coords.map(coord => <div key={coord} className="peg">{coord}</div>)
+        }
+      </div>
+    </div>
   );
 }
 
