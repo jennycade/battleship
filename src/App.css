@@ -1,6 +1,7 @@
 body {
   background-color: black;
   box-sizing: border-box;
+  --boardsize: 6;
 }
 
 .App {
@@ -10,8 +11,8 @@ body {
 }
 .gameboard {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(var(--boardsize), 1fr);
+  grid-template-rows: repeat(var(--boardsize), 1fr);
   height: 50vh;
   width: 50vh;
   margin: 0 auto;
