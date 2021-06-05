@@ -6,8 +6,8 @@ function App() {
   return (
     <div className="App">
       <header>BATTLESHIP</header>
-      <GameboardComponent owner="opponent" size={5} />
-      <GameboardComponent owner="player" size={5} />
+      <GameboardComponent owner="opponent" size={10} />
+      <GameboardComponent owner="player" size={10} />
     </div>
   );
 }
