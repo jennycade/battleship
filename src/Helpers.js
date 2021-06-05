@@ -12,11 +12,11 @@ export function boardGenerator(size) {
   }
   const alpha = 'abcdefghijklmnopqrstuvwxyz';
   let board = [];
-  for (let i=0; i<size; i++) {
-    const letter = alpha.slice(i, (i)+1);
-    // number
-    for (let j=1; j<=size; j++) {
-      board.push(`${letter}${j}`);
+  for (let i=1; i<=size; i++) {
+    // i = number
+    for (let j=0; j<size; j++) {
+      const letter = alpha.slice(j, (j)+1);
+      board.push(`${letter}${i}`);
     }
   }
 
