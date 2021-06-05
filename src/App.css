@@ -10,8 +10,8 @@ body {
 }
 .gameboard {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   height: 50vh;
   width: 50vh;
   margin: 0 auto;
@@ -23,6 +23,16 @@ body {
   transform-origin: top;
   /* perspective-origin: 100%; */
 }
+.label {
+  font-family: monospace;
+  color: white;
+  font-size: 1.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .peg {
   border: 1px solid white;
