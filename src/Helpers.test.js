@@ -16,18 +16,13 @@ test('Sum sums a different sum correctly', () => {
 });
 
 test('boardGenerator makes a 2x2 board', () => {
-  const board = {
-    a1: expect.any(Object),
-    a2: expect.any(Object),
-    b1: expect.any(Object),
-    b2: expect.any(Object),
-  };
-  expect(boardGenerator(2)).toMatchObject(board);
+  const board = ['a1', 'a2', 'b1', 'b2'];
+  expect(boardGenerator(2)).toEqual(board);
 });
 
 test('boardGenerator maxes out at size 26', () => {
   const gb = boardGenerator(30);
-  expect(Object.keys(gb).length).toBe(26**2);
+  expect(gb.length).toBe(26**2);
 });
 
 

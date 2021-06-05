@@ -2,7 +2,16 @@
 import { boardGenerator, moveOnePeg } from './Helpers';
 
 const Gameboard = (size) => {
-  const board = boardGenerator(size);
+  const coords = boardGenerator(size);
+  let board = {}
+  for (let i=0; i<coords.length; i++) {
+    board[coords[i]] = {
+      ship: null,
+      pos: null,
+      hit: '',
+    }
+  }
+
   let ships = [];
 
   const placeShip = (ship, coord, dir) => {
@@ -54,11 +63,11 @@ const Gameboard = (size) => {
   }
 
   const getCoords = () => {
-    return Object.keys(board);
+    return coords;
   }
 
   const verifyCoord = (coord) => { // TODO: Use this!
-    return Object.keys(board).includes(coord);
+    return coords.includes(coord);
   }
 
   const query = (coord, who) => {
