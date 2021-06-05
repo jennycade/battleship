@@ -8,7 +8,8 @@ const Game = (size) => {
   const p1 = Player('human', gb1, gb2);
   const p2 = Player('ai', gb2, gb1);
 
-  const players = [p1, p2];
+  const getPlayers = () => [p1, p2];
+  const getGameboards = () => [gb1, gb2];
 
   let turn = p1;
 
@@ -41,7 +42,8 @@ const Game = (size) => {
   }
 
   return {
-    players,
+    getPlayers,
+    getGameboards,
     switchTurn,
     whoseTurn,
     playTurn,

@@ -1,7 +1,9 @@
 import { boardGenerator } from "./Helpers";
 
 const GameboardComponent = (props) => {
-  const { owner, size } = props;
+  const { player, gameboard, owner } = props;
+
+  const size = Math.sqrt(gameboard.getCoords().length);
 
   const coords = boardGenerator(size);
   const alpha = 'abcdefghijklmnopqrstuvwxyz';
