@@ -1,7 +1,8 @@
 import { boardGenerator } from "./Helpers";
+import PegComponent from "./PegComponent";
 
 const GameboardComponent = (props) => {
-  const { player, gameboard, owner } = props;
+  const { player, gameboard, owner, play } = props;
 
   const size = Math.sqrt(gameboard.getCoords().length);
 
@@ -48,7 +49,7 @@ const GameboardComponent = (props) => {
 
       <div className="pegs" style={ pegsStyle }>
         {
-          coords.map(coord => <div key={coord} className="peg">{coord}</div>)
+          coords.map(coord => <PegComponent key={coord} coord={coord} player={player} play={play} />)
         }
       </div>
     </div>
