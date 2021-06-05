@@ -1,25 +1,27 @@
 body {
   background-color: black;
+  box-sizing: border-box;
 }
 
 .App {
   text-align: center;
-  perspective: 500px;
+  perspective: 1000px;
+  height: 100vh;
 }
 .gameboard {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  height: 50%;
-}
-.opponent {
-  width: 50%;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  height: 50vh;
+  width: 50vh;
   margin: 0 auto;
 }
+
 .player {
-  width: 50%;
-  margin: 0 auto;
   transform-style: preserve-3d;
-  transform: rotateX(60deg)
+  transform: rotateX(60deg);
+  transform-origin: top;
+  /* perspective-origin: 100%; */
 }
 
 .peg {
@@ -27,5 +29,9 @@ body {
 }
 
 .opponent .peg:hover {
-  background-color: green;
+  background-color: #00ff00;
+}
+
+.player .peg:hover {
+  background-color: aqua;
 }
