@@ -82,12 +82,16 @@ const Gameboard = (size) => {
     }
   }
 
+  const getBoard = () => {
+    return board;
+  }
+
   return {
     placeShip, 
     receiveAttack,
     areAllShipsSunk,
     query, verifyCoord, 
-    getCoords,
+    getCoords, getBoard,
   };
 }
 

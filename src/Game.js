@@ -34,6 +34,8 @@ const Game = (size) => {
 
     // switch turn to ai
     turn = p2;
+
+    // wait a second
     
     // ai attacks human
     const randomCoord = p2.attack();

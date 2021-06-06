@@ -11,6 +11,8 @@ function App() {
   const gameboards = game.getGameboards();
 
   const [attackCoord, setAttackCoord] = useState('');
+  const [gb1, setGb1] = useState(gameboards[0].getBoard());
+  const [gb2, setGb2] = useState(gameboards[1].getBoard());
 
   const updateAttackCoord = (e) => {
     // verify coordinate?
@@ -19,7 +21,9 @@ function App() {
   }
 
   const attack = () => {
+    // make the attack
     game.playTurn(attackCoord);
+    // re-render both gameboards?
   }
 
   return (
@@ -37,14 +41,14 @@ function App() {
 
 
       <GameboardComponent
-        player={ players[0] }
-        gameboard={ gameboards[0] }
+        player={ players[1] }
+        board={ gb2 }
         owner="opponent"
         play={ game.playTurn }
       />
       <GameboardComponent
-        player={ players[1] }
-        gameboard={ gameboards[1] }
+        player={ players[0] }
+        board={ gb1 }
         owner="player"
         play={ game.playTurn }
       />
