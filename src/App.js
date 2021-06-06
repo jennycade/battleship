@@ -19,7 +19,7 @@ function App() {
   }
 
   const attack = () => {
-    game.playTurn(players[0], attackCoord);
+    game.playTurn(attackCoord);
   }
 
   return (

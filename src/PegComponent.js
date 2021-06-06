@@ -5,8 +5,8 @@ const PegComponent = (props) => {
 
   const [pegDisplay, setPegDisplay] = useState(gameboard.query(coord, 'self').hit);
 
-  const play = (coord) => {
-    props.play(player, coord);
+  const play = () => {
+    props.play(coord);
   }
 
   return (

@@ -26,37 +26,22 @@ const Game = (size) => {
     return turn;
   }
 
-  const playTurn = (player, coord = '') => {
-    console.log(`Attack!`)
-    if (player === turn) {
-      // human play
-      if (player.type === 'human') {
-        player.attack(coord);
-      }
-      // ai play
-      if (player.type === 'ai') {
-        player.attack()
-        // setTimeout(() => { player.attack() }, 1000);
-      }
+  const playTurn = (coord) => {
+    console.log(`Attacking coordinate ${coord}`);
 
-      // switch turns
-      switchTurn();
-    }
-  }
+    // human attacks coordinate
+    p1.attack(coord);
 
-  let mode = 'game';
+    // switch turn to ai
+    turn = p2;
+    
+    // ai attacks human
+    p2.attack();
 
-  while (mode === 'game') {
-    if (turn.type === 'human') {
-      const coord = prompt(`Attack coordinate: `);
-    }
-    while (turn.type === 'ai') {
-      playTurn(turn);
-    }
-    mode = 'exit';
+    // switch turn to human
+    turn = p1;
   }
   
-
   return {
     getPlayers,
     getGameboards,
