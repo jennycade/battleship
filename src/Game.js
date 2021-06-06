@@ -27,21 +27,22 @@ const Game = (size) => {
   }
 
   const playTurn = (coord) => {
-    console.log(`Attacking coordinate ${coord}`);
-
+    // TODO: Verify coordinate first
     // human attacks coordinate
+    console.log(`Attacking coordinate ${coord}`);
     p1.attack(coord);
 
     // switch turn to ai
     turn = p2;
     
     // ai attacks human
-    p2.attack();
+    const randomCoord = p2.attack();
+    console.log(`The computer attacked coordinate ${randomCoord}`);
 
     // switch turn to human
     turn = p1;
   }
-  
+
   return {
     getPlayers,
     getGameboards,

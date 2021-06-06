@@ -15,7 +15,6 @@ const Player = (type, ownGameboard, oppGameboard) => {
 
     // attack!
     attack(randomCoord);
-    console.log(`The computer attacked ${randomCoord}`)
 
     // add to attackedCoords
     attackedCoords.push(randomCoord);
