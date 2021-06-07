@@ -23,22 +23,3 @@ test('The game takes turns', () => {
   expect(game.whoseTurn()).toBe(game.getPlayers()[0]);
 });
 
-test(`When it's an ai player's turn, it plays after a brief wait`, () => {
-  // set up game
-  const game = Game(5);
-  const p1 = game.getPlayers()[0];
-  const p2 = game.getPlayers()[1];
-
-  // p1 turn
-  game.playTurn(p1, 'a1');
-
-  // p2 turn
-  expect(game.whoseTurn()).toBe(p2);
-
-
-  // wait for p2 to play
-  setTimeout(() => {
-    expect(game.whoseTurn()).toBe(p1);
-  }, 2000);
-  jest.runAllTimers();
-});

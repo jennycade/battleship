@@ -1,5 +1,5 @@
 // import Ship from './Ship';
-import { boardGenerator, moveOnePeg } from './Helpers';
+import { boardGenerator, moveOnePeg, parseCoord } from './Helpers';
 
 const Gameboard = (size) => {
   const coords = boardGenerator(size);
@@ -86,12 +86,34 @@ const Gameboard = (size) => {
     return board;
   }
 
+  const printBoard = () => {
+    let str = '';
+    for (const coord in board) {
+      if (parseCoord(coord) === 1) {
+        // new row
+        str += '\n'
+      }
+      const hit = board[coord].hit;
+      if (hit === '') {
+        str += '.';
+      } else if (hit === 'hit') {
+        str += 'X';
+      } else if (hit === 'miss') {
+        str += 'O';
+      } else {
+        str += hit;
+      }
+      return  str;
+    }
+  }
+
   return {
     placeShip, 
     receiveAttack,
     areAllShipsSunk,
     query, verifyCoord, 
     getCoords, getBoard,
+    printBoard,
   };
 }
 

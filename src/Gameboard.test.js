@@ -225,8 +225,7 @@ test('query doesn\'t show active ships to opponent', () => {
 
 
 
-test('getCoords shares list of coordinates (for AI)', () => {
-  const gb = Gameboard(2);
-  const coords = ['a1', 'a2', 'b1', 'b2'];
-  expect(gb.getCoords()).toEqual(coords);
-});
+// getBoard
+
+// printBoard
+// TODO: Write these tests, figure out where this call isn't working the React app

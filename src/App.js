@@ -22,8 +22,15 @@ function App() {
 
   const attack = () => {
     // make the attack
-    game.playTurn(attackCoord);
-    // re-render both gameboards?
+    const aiAttackCoord = game.playTurn(attackCoord, true);
+    
+    // update gbs
+    const [newGb1, newGb2] = game.getGameboards();
+    setGb1(newGb1);
+    setGb2(newGb2);
+
+    // console.log those boards
+
   }
 
   return (

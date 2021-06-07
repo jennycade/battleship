@@ -26,7 +26,7 @@ const Game = (size) => {
     return turn;
   }
 
-  const playTurn = (coord) => {
+  const playTurn = (coord, verbose = false) => {
     // TODO: Verify coordinate first
     // human attacks coordinate
     console.log(`Attacking coordinate ${coord}`);
@@ -43,6 +43,18 @@ const Game = (size) => {
 
     // switch turn to human
     turn = p1;
+    console.log('hello?')
+
+    // print the boards
+    if (verbose) {
+      console.log(`OPPONENT'S BOARD`);
+      console.log(gb2.printBoard());
+      console.log(`PLAYER BOARD`);
+      console.log(gb1.printBoard());
+    }
+
+    // return coord that ai attacked
+    return randomCoord;
   }
 
   return {

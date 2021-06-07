@@ -9,10 +9,10 @@ const PegComponent = (props) => {
 
   return (
     <div key={ coord }
-      onClick={ play }
+      // onClick={ play }
       className="peg"
     >
-      { hit }
+      { gameboard[coord].hit }
     </div>
   );
 };
