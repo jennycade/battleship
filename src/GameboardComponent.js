@@ -3,10 +3,9 @@ import PegComponent from "./PegComponent";
 const GameboardComponent = (props) => {
   const { player, board, owner, play } = props;
 
-  // console.table(board);
 
+  // board size for style
   const size = Math.sqrt(Object.keys(board).length);
-  console.log(size);
 
   const coords = Object.keys(board);
   const alpha = 'abcdefghijklmnopqrstuvwxyz';
@@ -51,7 +50,18 @@ const GameboardComponent = (props) => {
 
       <div className="pegs" style={ pegsStyle }>
         {
-          coords.map(coord => <PegComponent key={coord} coord={coord} hit="bloop" player={player} play={play} gameboard={board} />)
+          coords.map(coord => {
+          return (
+            <PegComponent
+              key={coord}
+              coord={coord}
+              hit={board[coord].hit}
+              player={player}
+              play={play}
+              gameboard={board}
+            />
+          );}
+          )
         }
       </div>
     </div>
