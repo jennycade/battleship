@@ -11,7 +11,7 @@ body {
 }
 .gameboard {
   display: grid;
-
+/* TODO: make sure the grid doesn't change size to accomodate bigger content */
   height: 50vh;
   width: 50vh;
   margin: 0 auto;

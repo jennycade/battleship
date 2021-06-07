@@ -3,9 +3,9 @@ import PegComponent from "./PegComponent";
 const GameboardComponent = (props) => {
   const { player, board, owner, play } = props;
 
-  console.table(board);
+  // console.table(board);
 
-  const size = Math.sqrt(board.length);
+  const size = Math.sqrt(Object.keys(board).length);
   console.log(size);
 
   const coords = Object.keys(board);
