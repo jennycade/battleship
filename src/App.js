@@ -12,21 +12,13 @@ function App() {
 
   const [attackCoord, setAttackCoord] = useState('');
 
-  const updateAttackCoord = (e) => {
-    // verify coordinate
-    // TODO write this
-
-    // update
-    setAttackCoord(e.target.value);
-  }
-
   const attack = (coord = '') => {
     // make the attack
     if (coord !== '') {
       setAttackCoord(coord);
-      const aiAttackCoord = game.playTurn(coord, true);
+      const aiAttackCoord = game.playTurn(coord);
     } else {
-      const aiAttackCoord = game.playTurn(attackCoord, true);
+      const aiAttackCoord = game.playTurn(attackCoord);
     }
     
     // update gbs
@@ -36,16 +28,6 @@ function App() {
   return (
     <div className="App">
       <header>BATTLESHIP</header>
-      <label>
-        Attack coordinate:
-        <input
-          type="text"
-          value={attackCoord}
-          onChange={ updateAttackCoord }
-        />
-      </label>
-      <button onClick={attack}>FIRE TORPEDO</button>
-
 
       <GameboardComponent
         board={ boards[1] }

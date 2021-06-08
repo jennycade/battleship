@@ -57,6 +57,7 @@ const GameboardComponent = (props) => {
               coord={coord}
               hit={board[coord]}
               play={play}
+              owner={owner}
             />
           );}
           )

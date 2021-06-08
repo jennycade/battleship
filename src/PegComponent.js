@@ -1,12 +1,26 @@
 // import { useState, useEffect } from "react";
 
 const PegComponent = (props) => {
-  const { coord, hit } = props
+  const { coord, hit, owner } = props
 
   // const [mode, setMode] = useState(hit);
 
   const play = () => {
-    props.play(coord);
+    if (hit === '' && owner === 'opponent') {
+      props.play(coord);
+    }
+  }
+
+  const hitCode = () => {
+    if (hit === '') {
+      return hit;
+    }
+    if (hit === 'miss') {
+      return 'O';
+    }
+    if (hit === 'hit') {
+      return 'X';
+    }
   }
 
   // useEffect(() => {
@@ -14,11 +28,11 @@ const PegComponent = (props) => {
   // }, [hit]);
 
   return (
-    <div key={ coord+hit } // need to update the key when prop changes to get this to re-render, maybe? It doesn't seem to work though. Maybe need to update key for gameboard component too.
+    <div key={ coord }
       onClick={ play }
       className="peg"
     >
-      { hit }
+      { hitCode() }
     </div>
   );
 };
