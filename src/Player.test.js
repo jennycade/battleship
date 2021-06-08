@@ -24,8 +24,6 @@ test('Random attack', () => {
   const gb = Gameboard(5);
   const opponent = Gameboard(5);
   const p = Player('ai', gb, opponent);
-
-  console.log(p);
   
   p.attack() // as long as it doesn't throw we're cool!
 });

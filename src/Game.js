@@ -14,7 +14,6 @@ const Game = (size) => {
   let turn = p1;
 
   const switchTurn = () => {
-    console.log('Switching turns');
     if (turn === p1) {
       turn = p2;
     } else {

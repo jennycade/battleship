@@ -22,7 +22,7 @@ function App() {
 
   const attack = () => {
     // make the attack
-    const aiAttackCoord = game.playTurn(attackCoord, true);
+    const aiAttackCoord = game.playTurn(attackCoord);
     
     // update gbs
     const [newGb1, newGb2] = game.getGameboards();

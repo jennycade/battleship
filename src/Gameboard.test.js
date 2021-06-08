@@ -229,3 +229,8 @@ test('query doesn\'t show active ships to opponent', () => {
 
 // printBoard
 // TODO: Write these tests, figure out where this call isn't working the React app
+test('printBoard returns a string with the board', () => {
+  let board = '\n..\n..';
+  const gb = Gameboard(2);
+  expect(gb.printBoard()).toBe(board);
+});

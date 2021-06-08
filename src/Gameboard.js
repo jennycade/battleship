@@ -87,9 +87,10 @@ const Gameboard = (size) => {
   }
 
   const printBoard = () => {
+    // console.table(board);
     let str = '';
     for (const coord in board) {
-      if (parseCoord(coord) === 1) {
+      if (parseCoord(coord)[0] === 'a') {
         // new row
         str += '\n'
       }
@@ -103,8 +104,8 @@ const Gameboard = (size) => {
       } else {
         str += hit;
       }
-      return  str;
     }
+    return str;
   }
 
   return {
