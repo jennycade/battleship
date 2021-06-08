@@ -239,4 +239,12 @@ test('printBoard shows a miss', () => {
   const gb = Gameboard(2);
   gb.receiveAttack('a1');
   expect(gb.printBoard()).toBe(board);
+});
+
+test('printBoard shows two misses', () => {
+  let board = '\nO.\nO.';
+  const gb = Gameboard(2);
+  gb.receiveAttack('a1');
+  gb.receiveAttack('a2');
+  expect(gb.printBoard()).toBe(board);
 })

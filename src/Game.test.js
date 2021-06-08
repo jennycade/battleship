@@ -23,3 +23,18 @@ test('The game takes turns', () => {
   expect(game.whoseTurn()).toBe(game.getPlayers()[0]);
 });
 
+test('The game accumulates hits', () => {
+  const game = Game(2);
+  game.playTurn('a1');
+  game.playTurn('a2', true);
+  // I don't know how to write expect statement for console.log
+  // FOR HUMAN TESTING:
+  // console.log should include
+  //
+  // "
+  // OPPONENT'S BOARD
+  //
+  // O.
+  // O.
+  // "
+})
