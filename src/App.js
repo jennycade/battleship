@@ -6,16 +6,16 @@ import GameboardComponent from './GameboardComponent';
 
 function App() {
   // start a game
-  const game = Game(10);
-  const players = game.getPlayers();
-  const gameboards = game.getGameboards();
+  const [game, setGame] = useState(Game(10));
+
+  const [boards, setBoards] = useState(game.getHitBoards());
 
   const [attackCoord, setAttackCoord] = useState('');
-  const [gb1, setGb1] = useState(gameboards[0].getBoard());
-  const [gb2, setGb2] = useState(gameboards[1].getBoard());
 
   const updateAttackCoord = (e) => {
-    // verify coordinate?
+    // verify coordinate
+    // TODO write this
+
     // update
     setAttackCoord(e.target.value);
   }
@@ -25,9 +25,8 @@ function App() {
     const aiAttackCoord = game.playTurn(attackCoord, true);
     
     // update gbs
-    const [newGb1, newGb2] = game.getGameboards();
-    setGb1(newGb1);
-    setGb2(newGb2);
+    // const [newGb1, newGb2] = game.getHitBoards();
+    setBoards(game.getHitBoards())
 
     // console.log those boards
     // console.log(newGb1.printBoard());
@@ -49,14 +48,12 @@ function App() {
 
 
       <GameboardComponent
-        player={ players[1] }
-        board={ gb2 }
+        board={ boards[1] }
         owner="opponent"
         play={ game.playTurn }
       />
       <GameboardComponent
-        player={ players[0] }
-        board={ gb1 }
+        board={ boards[0] }
         owner="player"
         play={ game.playTurn }
       />

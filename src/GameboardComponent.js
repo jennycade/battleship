@@ -1,7 +1,7 @@
 import PegComponent from "./PegComponent";
 
 const GameboardComponent = (props) => {
-  const { player, board, owner, play } = props;
+  const { board, owner, play } = props;
 
 
   // board size for style
@@ -55,10 +55,8 @@ const GameboardComponent = (props) => {
             <PegComponent
               key={coord}
               coord={coord}
-              hit={board[coord].hit}
-              player={player}
+              hit={board[coord]}
               play={play}
-              gameboard={board}
             />
           );}
           )
