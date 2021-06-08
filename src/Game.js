@@ -42,7 +42,6 @@ const Game = (size) => {
 
     // switch turn to human
     turn = p1;
-    console.log('hello?')
 
     // print the boards
     if (verbose) {
