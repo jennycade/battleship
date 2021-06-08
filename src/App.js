@@ -20,17 +20,17 @@ function App() {
     setAttackCoord(e.target.value);
   }
 
-  const attack = () => {
+  const attack = (coord = '') => {
     // make the attack
-    const aiAttackCoord = game.playTurn(attackCoord, true);
+    if (coord !== '') {
+      setAttackCoord(coord);
+      const aiAttackCoord = game.playTurn(coord, true);
+    } else {
+      const aiAttackCoord = game.playTurn(attackCoord, true);
+    }
     
     // update gbs
-    // const [newGb1, newGb2] = game.getHitBoards();
-    setBoards(game.getHitBoards())
-
-    // console.log those boards
-    // console.log(newGb1.printBoard());
-    // console.log(newGb2.printBoard());
+    setBoards(game.getHitBoards());
   }
 
   return (
@@ -50,12 +50,12 @@ function App() {
       <GameboardComponent
         board={ boards[1] }
         owner="opponent"
-        play={ game.playTurn }
+        play={ attack }
       />
       <GameboardComponent
         board={ boards[0] }
         owner="player"
-        play={ game.playTurn }
+        play={ attack }
       />
     </div>
   );
