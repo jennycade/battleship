@@ -247,4 +247,27 @@ test('printBoard shows two misses', () => {
   gb.receiveAttack('a1');
   gb.receiveAttack('a2');
   expect(gb.printBoard()).toBe(board);
-})
+});
+
+test('getHitBoard works for blank board', () => {
+  let board = {
+    a1: '',
+    a2: '',
+    b1: '',
+    b2: '',
+  };
+  const gb = Gameboard(2);
+  expect(gb.getHitBoard()).toMatchObject(board);
+});
+
+test('getHitBoard shows a miss', () => {
+  let board = {
+    a1: 'miss',
+    a2: '',
+    b1: '',
+    b2: '',
+  };
+  const gb = Gameboard(2);
+  gb.receiveAttack('a1');
+  expect(gb.getHitBoard()).toMatchObject(board);
+});

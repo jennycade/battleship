@@ -86,6 +86,14 @@ const Gameboard = (size) => {
     return board;
   }
 
+  const getHitBoard = () => {
+    let result = {};
+    for (const coord in board) {
+      result[coord] = board[coord].hit;
+    }
+    return result;
+  }
+
   const printBoard = () => {
     // console.table(board);
     let str = '';
@@ -115,6 +123,7 @@ const Gameboard = (size) => {
     query, verifyCoord, 
     getCoords, getBoard,
     printBoard,
+    getHitBoard,
   };
 }
 

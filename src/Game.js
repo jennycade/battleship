@@ -11,6 +11,10 @@ const Game = (size) => {
   const getPlayers = () => [p1, p2];
   const getGameboards = () => [gb1, gb2];
 
+  const getHitBoards = () => {
+    return [gb1.getHitBoard(), gb2.getHitBoard()];
+  }
+
   let turn = p1;
 
   const switchTurn = () => {
@@ -28,7 +32,7 @@ const Game = (size) => {
   const playTurn = (coord, verbose = false) => {
     // TODO: Verify coordinate first
     // human attacks coordinate
-    console.log(`Attacking coordinate ${coord}`);
+    // console.log(`Attacking coordinate ${coord}`);
     p1.attack(coord);
 
     // switch turn to ai
@@ -38,7 +42,7 @@ const Game = (size) => {
     
     // ai attacks human
     const randomCoord = p2.attack();
-    console.log(`The computer attacked coordinate ${randomCoord}`);
+    // console.log(`The computer attacked coordinate ${randomCoord}`);
 
     // switch turn to human
     turn = p1;
@@ -58,6 +62,7 @@ const Game = (size) => {
   return {
     getPlayers,
     getGameboards,
+    getHitBoards,
     switchTurn,
     whoseTurn,
     playTurn,

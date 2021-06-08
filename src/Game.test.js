@@ -26,7 +26,7 @@ test('The game takes turns', () => {
 test('The game accumulates hits', () => {
   const game = Game(2);
   game.playTurn('a1');
-  game.playTurn('a2', true);
+  // game.playTurn('a2', true); // disabling to read other tests
   // I don't know how to write expect statement for console.log
   // FOR HUMAN TESTING:
   // console.log should include
@@ -37,4 +37,10 @@ test('The game accumulates hits', () => {
   // O.
   // O.
   // "
-})
+});
+
+test('getHitBoards returns a non-nested object representing the board', () => {
+  const game = Game(2);
+  const boards = game.getHitBoards();
+  expect(boards.length).toBe(2);
+});
