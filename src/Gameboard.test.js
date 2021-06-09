@@ -39,6 +39,33 @@ test('placeShip() correctly assigns ship of length 3 (not going off the board', 
   expect(a4.ship).toBe(null);
 });
 
+test('Placing a ship off the edge throws an error', () => {
+  const gb = Gameboard(5);
+  const ship = Ship(2);
+
+  expect(() => {gb.placeShip(ship, 'a1', 'up')}).toThrow();
+
+  // board
+  //  ABCDE
+  // ?x    
+  // 1s----
+  // 2-----
+  // 3-----
+  // 4-----
+  // 5-----
+});
+
+test('Placing a ship where another one already is throws an error', () => {
+  const gb = Gameboard(5);
+  const ship1 = Ship(2);
+  const ship2 = Ship(2);
+
+  gb.placeShip(ship1, 'a1', 'down');
+  expect(() => {
+    gb.placeShip(ship2, 'a1', 'right');
+  }).toThrow();
+});
+
 // verifyCoord()
 
 test('verifyCoord() returns true when coordinate exists', () => {

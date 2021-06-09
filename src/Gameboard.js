@@ -21,16 +21,29 @@ const Gameboard = (size) => {
     // calculate spots
     const numPegs = ship.pegs.length;
     let peg = coord;
-    // TODO: Consider checking that each peg exists before starting to assign the ship.
+
+    let pegs = [];
+    for (let i=0; i<numPegs; i++) {
+      pegs.push(peg);
+      // verify coordinate
+      if (!verifyCoord(peg)) {
+        throw new Error(`${peg} is not a valid coordinate`);
+      }
+      // check for a ship
+      if (board[pegs[i]].ship !== null) {
+        throw new Error(`Trying to place a ship where another ship already exists at coord ${peg}`);
+      }
+
+      peg = moveOnePeg(peg, dir);
+    }
+
     for (let i=0; i<numPegs; i++) {
       // assign ship
-      board[peg] = {
+      board[pegs[i]] = {
         ship,
         pos: i,
         hit: '',
       }
-      // set coordinate for next peg that the ship goes in
-      peg = moveOnePeg(peg, dir);
     }
   }
 

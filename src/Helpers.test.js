@@ -16,7 +16,7 @@ test('Sum sums a different sum correctly', () => {
 });
 
 test('boardGenerator makes a 2x2 board', () => {
-  const board = ['a1', 'a2', 'b1', 'b2'];
+  const board = ['a1', 'b1', 'a2', 'b2'];
   expect(boardGenerator(2)).toEqual(board);
 });
 

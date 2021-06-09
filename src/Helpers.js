@@ -64,3 +64,23 @@ export function alphaToNum(str) {
 export function numToAlpha(num) {
   return alpha.slice(num-1, num);
 }
+
+export function shuffle(arr) {
+  let m = arr.length, t, i;
+
+  let newArray = [...arr];
+
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = newArray[m];
+    newArray[m] = newArray[i];
+    newArray[i] = t;
+  }
+
+  return newArray;
+}
