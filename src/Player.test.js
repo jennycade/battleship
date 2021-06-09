@@ -51,23 +51,23 @@ test('Place a ship', () => {
   expect(gb.getBoard().a3.ship).toBe(null);
 });
 
-// test('Placing a ship off the edge throws an error', () => {
-//   const gb = Gameboard(5);
-//   const opponent = Gameboard(5);
-//   const p = Player('human', gb, opponent);
-//   const ship = Ship(2);
+test('Placing a ship off the edge throws an error', () => {
+  const gb = Gameboard(5);
+  const opponent = Gameboard(5);
+  const p = Player('human', gb, opponent);
+  const ship = Ship(2);
 
-//   expect(() => {p.placeShip(ship, 'a1', 'up')}).toThrow();
+  expect(() => {p.placeShip(ship, 'a1', 'up')}).toThrow();
 
-//   // board
-//   //  ABCDE
-//   // ?x    
-//   // 1s----
-//   // 2-----
-//   // 3-----
-//   // 4-----
-//   // 5-----
-// });
+  // board
+  //  ABCDE
+  // ?x    
+  // 1s----
+  // 2-----
+  // 3-----
+  // 4-----
+  // 5-----
+});
 
 test('Randomly place a ship', () => {
   const gb = Gameboard(5);
@@ -80,7 +80,13 @@ test('Randomly place a ship', () => {
   const board = gb.getBoard();
 
   // count pegs with a ship
-  // console.log(board);
-
+  let shipPegs = 0;
+  for (let coord in board) {
+    if (board[coord].ship) {
+      shipPegs++;
+    }
+  }
   
+  expect(shipPegs).toBe(2);
 });
+

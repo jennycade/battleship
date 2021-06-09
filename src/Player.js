@@ -10,6 +10,8 @@ const Player = (type, ownGameboard, oppGameboard) => {
   }
 
   const randomlyPlaceShip = (ship) => {
+    // keep track of how many tries it takes
+    let tries = 0;
     // pick a random coordinate (shuffle coords and iterate over)
     let coords = [...ownGameboard.getCoords()];
     coords = shuffle(coords);
@@ -19,28 +21,24 @@ const Player = (type, ownGameboard, oppGameboard) => {
       let dirs = ['up', 'down', 'left', 'right'];
       dirs = shuffle(dirs);
       for (let j=0; j<dirs.length; j++) {
-        // check to make sure all pegs:
-        // 1. exist
-        // 2. aren't already occupied by a ship
-        // OR write some error-throwing in Gameboard.placeShip() and catch it here.
+        // Gameboard.placeShip throws an error if any peg:
+        // 1. doesn't exist
+        // 2. is already occupied by a ship
 
-        // yes? placeShip()
-        // console.log('Trying to place a ship');
-        // console.log(`coord: ${coords[i]}`);
-        // console.log(`direction: ${dirs[j]}`);
-        placeShip(ship, coords[i], dirs[j]);
-
-        return (coords[i], dirs[i]);
-
+        try {
+          placeShip(ship, coords[i], dirs[j]);
+          return (coords[i], dirs[i]);
+        } catch (error) {
+            // coordinate/direction pair didn't work
+            // keep track of the number of tries?
+            tries++;
+        }
         // no? try a new direction
       }
-
-      
-
       // still no? try a new coordinate
     }
 
-    // throw new Error('Ships cannot be placed');
+    throw new Error(`AI failed to place ship after ${tries+1} tries`);
   }
 
   const attack = (coord) => {
