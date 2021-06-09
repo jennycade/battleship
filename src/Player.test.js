@@ -90,3 +90,13 @@ test('Randomly place a ship', () => {
   expect(shipPegs).toBe(2);
 });
 
+test(`AI can't place a ship bigger than the board`, () => {
+  const gb = Gameboard(2);
+  const opponent = Gameboard(2);
+  const p = Player('ai', gb, opponent);
+  const ship = Ship(5);
+
+  expect(() => {
+    p.placeShip(ship);
+  }).toThrow();
+});
