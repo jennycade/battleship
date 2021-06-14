@@ -2,6 +2,7 @@
 import { boardGenerator, moveOnePeg, parseCoord } from './Helpers';
 
 const Gameboard = (size) => {
+
   const coords = boardGenerator(size);
   let board = {}
   for (let i=0; i<coords.length; i++) {
@@ -13,6 +14,18 @@ const Gameboard = (size) => {
   }
 
   let ships = [];
+
+  const clearBoard = () => {
+    board = {};
+    for (let i=0; i<coords.length; i++) {
+      board[coords[i]] = {
+        ship: null,
+        pos: null,
+        hit: '',
+      }
+    }
+    ships = [];
+  }
 
   const placeShip = (ship, coord, dir) => {
     // add to ships
@@ -107,17 +120,26 @@ const Gameboard = (size) => {
     return result;
   }
 
-  const printBoard = () => {
+  const printBoard = (who = 'opponent') => {
     // console.table(board);
     let str = '';
     for (const coord in board) {
+      // column A is first
       if (parseCoord(coord)[0] === 'a') {
         // new row
         str += '\n'
       }
       const hit = board[coord].hit;
       if (hit === '') {
-        str += '.';
+        if (who==='self') {
+          if (board[coord].ship) {
+            str += 'S';
+          } else {
+            str += '.';
+          }
+        } else {
+          str += '.';
+        }
       } else if (hit === 'hit') {
         str += 'X';
       } else if (hit === 'miss') {
@@ -131,6 +153,7 @@ const Gameboard = (size) => {
 
   return {
     placeShip, 
+    clearBoard,
     receiveAttack,
     areAllShipsSunk,
     query, verifyCoord, 

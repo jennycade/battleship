@@ -41,6 +41,29 @@ const Player = (type, ownGameboard, oppGameboard) => {
     throw new Error(`AI failed to place ship after ${tries+1} tries`);
   }
 
+  const placeFleet = (ships) => {
+    let tries = 0;
+
+    while (tries < 100) {
+      try {
+        tries++;
+        for (let i=0; i<ships.length; i++) {
+          randomlyPlaceShip(ships[i]);
+        }
+        return true;
+      } catch (error) {
+        // clear the gameboard
+        console.log(`AI couldn't place ships (attempt #${tries}). Trying again.`);
+        ownGameboard.clearBoard();
+      }
+    }
+
+    if (tries >= 100) {
+      throw new Error(`AI couldn't place ships after ${tries} tries. Try using fewer ships or a larger gameboard.`)
+    }
+    
+  }
+
   const attack = (coord) => {
     oppGameboard.receiveAttack(coord);
   }
@@ -65,6 +88,7 @@ const Player = (type, ownGameboard, oppGameboard) => {
   return {
     attack: type==='human' ? attack : randomAttack,
     placeShip: type==='human' ? placeShip : randomlyPlaceShip,
+    placeFleet: type==='ai' ? placeFleet : null,
   }
 }
 

@@ -100,3 +100,51 @@ test(`AI can't place a ship bigger than the board`, () => {
     p.placeShip(ship);
   }).toThrow();
 });
+
+test(`AI places fleet of ships`, () => {
+  const gb = Gameboard(10);
+  const opponent = Gameboard(10);
+  const p = Player('ai', gb, opponent);
+
+  const destroyer = Ship(2);
+  const submarine = Ship(3);
+  const cruiser = Ship(3);
+  const battleship = Ship(4);
+  const carrier = Ship(5);
+
+  const fleet = [
+    destroyer,
+    submarine,
+    cruiser,
+    battleship,
+    carrier,
+  ];
+
+  p.placeFleet(fleet);
+  // just looking for it to not throw an error
+  console.log(gb.printBoard('self'));
+
+});
+
+test(`AI arranges tricky (but not impossible) boards`, () => {
+  const gb = Gameboard(5);
+  const opponent = Gameboard(5);
+  const p = Player('ai', gb, opponent);
+
+  const destroyer = Ship(2);
+  const submarine = Ship(3);
+  const cruiser = Ship(3);
+  const battleship = Ship(4);
+  const carrier = Ship(5);
+
+  const fleet = [
+    destroyer,
+    submarine,
+    cruiser,
+    battleship,
+    carrier,
+  ];
+
+  p.placeFleet(fleet);
+  console.log(gb.printBoard('self'));
+});
