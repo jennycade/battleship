@@ -1,5 +1,6 @@
 import Gameboard from "./Gameboard";
 import Player from './Player';
+import Ship from './Ship';
 
 const Game = (size) => {
   const gb1 = Gameboard(size);
@@ -11,11 +12,32 @@ const Game = (size) => {
   const getPlayers = () => [p1, p2];
   const getGameboards = () => [gb1, gb2];
 
+  let phase = 'init';
+  let turn = p1;
+  let p1Ships = [];
+  let p2Ships = [];
+
+  const getPhase = () => phase;
+
+  const createFleets = (shipSizes = [2, 3, 3, 4, 5]) => {
+
+    for (let i=0; i<shipSizes.length; i++) {
+      // make a ship
+      p1Ships.push(Ship(shipSizes[i]));
+      p2Ships.push(Ship(shipSizes[i]));
+    }
+
+    phase = 'placement';
+    // tell AI to place its ships
+
+    p2.placeFleet(p2Ships);
+
+  }
+
   const getHitBoards = () => {
     return [gb1.getHitBoard(), gb2.getHitBoard()];
   }
 
-  let turn = p1;
 
   const switchTurn = () => {
     if (turn === p1) {
@@ -63,6 +85,8 @@ const Game = (size) => {
     getPlayers,
     getGameboards,
     getHitBoards,
+    getPhase,
+    createFleets,
     switchTurn,
     whoseTurn,
     playTurn,

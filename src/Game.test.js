@@ -44,3 +44,12 @@ test('getHitBoards returns a non-nested object representing the board', () => {
   const boards = game.getHitBoards();
   expect(boards.length).toBe(2);
 });
+
+test('Create the standard fleet', () => {
+  const game = Game(10);
+  game.createFleets();
+
+  expect(game.getPhase()).toBe('placement');
+
+  // figure out how to test this...
+});
