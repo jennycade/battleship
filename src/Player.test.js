@@ -122,7 +122,7 @@ test(`AI places fleet of ships`, () => {
 
   p.placeFleet(fleet);
   // just looking for it to not throw an error
-  console.log(gb.printBoard('self'));
+  // console.log(gb.printBoard('self'));
 
 });
 
@@ -146,5 +146,33 @@ test(`AI arranges tricky (but not impossible) boards`, () => {
   ];
 
   p.placeFleet(fleet);
-  console.log(gb.printBoard('self'));
+  // console.log(gb.printBoard('self'));
+});
+
+test(`AI gives up on placing an impossible board`, () => {
+  const gb = Gameboard(5);
+  const opponent = Gameboard(5);
+  const p = Player('ai', gb, opponent);
+
+  const destroyer = Ship(5);
+  const submarine = Ship(5);
+  const cruiser = Ship(5);
+  const battleship = Ship(5);
+  const carrier = Ship(5);
+  const carrier2 = Ship(5);
+
+  const fleet = [
+    destroyer,
+    submarine,
+    cruiser,
+    battleship,
+    carrier,
+    carrier2,
+  ];
+
+  expect(() => {
+    p.placeFleet(fleet);
+  }).toThrow();
+
+  // console.log(gb.printBoard('self'));
 });

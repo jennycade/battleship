@@ -53,13 +53,13 @@ const Player = (type, ownGameboard, oppGameboard) => {
         return true;
       } catch (error) {
         // clear the gameboard
-        console.log(`AI couldn't place ships (attempt #${tries}). Trying again.`);
         ownGameboard.clearBoard();
       }
     }
 
     if (tries >= 100) {
       throw new Error(`AI couldn't place ships after ${tries} tries. Try using fewer ships or a larger gameboard.`)
+      // This succeeds more and quicker than expected! What's going on?
     }
     
   }
