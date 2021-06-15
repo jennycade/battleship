@@ -37,6 +37,10 @@ const Game = (size) => {
   }
 
   const placePlayerShip = (shipSize, coord, dir) => {
+    // throw an error if it's not the placement phase
+    if (phase !== 'placement') {
+      throw new Error(`Ship placement is not allowed during the ${phase} phase.`);
+    }
 
     // find ship of correct size
     const shipIndex = p1ShipsToPlace.findIndex(x => x.pegs.length===shipSize);
@@ -57,7 +61,15 @@ const Game = (size) => {
     } catch (error) {
       // TODO: pass error.message instead of console.logging?
       console.log(`Your ship could not be placed.`);
-      console.log(error.message);
+      if (error instanceof TypeError) {
+        // if there's no ship, placeShip throws a TypeError when trying to access the pegs array.
+        console.log(`There is no ship of length ${shipSize} to be placed.`);
+      } else {
+        // other errors from Gameboard.placeShip:
+        // - one or more pegs are not valid
+        // - one or more pegs are already occupied by another ship.
+        console.log(error.message);
+      }
       console.log(`Try again.`);
       return false;
     }
@@ -81,6 +93,11 @@ const Game = (size) => {
   }
 
   const playTurn = (coord, verbose = false) => {
+    // throw an error if it's not the attack phase
+    if (phase !== 'attack') {
+      throw new Error(`Attacking is not allowed during the ${phase} phase.`)
+    }
+
     // TODO: Verify coordinate first
     // human attacks coordinate
     p1.attack(coord);

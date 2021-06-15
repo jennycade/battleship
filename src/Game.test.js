@@ -25,6 +25,9 @@ test('The game takes turns', () => {
 
 test('The game accumulates hits', () => {
   const game = Game(2);
+  game.createFleets([1]);
+  game.placePlayerShip(1, 'a1', 'down');
+  
   game.playTurn('a1');
   // game.playTurn('a2', true); // disabling to read other tests
   // I don't know how to write expect statement for console.log
@@ -105,4 +108,21 @@ test(`Game doesn't let player place a ship on top of another ship`, () => {
 
   game.placePlayerShip(2, 'a1', 'down');
   expect(game.placePlayerShip(3, 'a1', 'down')).toBe(false);
+});
+
+test(`Can't place the same ship twice`, () => {
+  const game = Game(10);
+  game.createFleets();
+
+  game.placePlayerShip(2, 'a1', 'down');
+  expect(game.placePlayerShip(2, 'j1', 'down')).toBe(false);
+});
+
+test(`Game throws an error if you try to attack during ship placement phase`, () => {
+  const game = Game(10);
+  game.createFleets();
+
+  expect(() => {
+    game.playTurn('a1')
+  }).toThrow();
 });
