@@ -14,8 +14,8 @@ const Game = (size) => {
 
   let phase = 'init';
   let turn = p1;
-  let p1Ships = [];
-  let p2Ships = [];
+  let p1ShipsToPlace = [];
+  let p2ShipsToPlace = [];
 
   const getPhase = () => phase;
 
@@ -23,15 +23,44 @@ const Game = (size) => {
 
     for (let i=0; i<shipSizes.length; i++) {
       // make a ship
-      p1Ships.push(Ship(shipSizes[i]));
-      p2Ships.push(Ship(shipSizes[i]));
+      p1ShipsToPlace.push(Ship(shipSizes[i]));
+      p2ShipsToPlace.push(Ship(shipSizes[i]));
     }
 
     phase = 'placement';
     // tell AI to place its ships
 
-    p2.placeFleet(p2Ships);
+    p2.placeFleet(p2ShipsToPlace);
+    // remove from shipsToPlace
+    p2ShipsToPlace = [];
 
+  }
+
+  const placePlayerShip = (shipSize, coord, dir) => {
+
+    // find ship of correct size
+    const shipIndex = p1ShipsToPlace.findIndex(x => x.pegs.length===shipSize);
+    const ship = p1ShipsToPlace[shipIndex];
+
+    try {
+      // place it
+      p1.placeShip(ship, coord, dir);
+      // remove from shipsToPlace
+      p1ShipsToPlace.splice(shipIndex, 1);
+
+      // all ships placed? switch to attack phase of game
+      if (p1ShipsToPlace.length === 0 && p2ShipsToPlace.length === 0) {
+        phase = 'attack';
+      }
+
+      return true;
+    } catch (error) {
+      // TODO: pass error.message instead of console.logging?
+      console.log(`Your ship could not be placed.`);
+      console.log(error.message);
+      console.log(`Try again.`);
+      return false;
+    }
   }
 
   const getHitBoards = () => {
@@ -54,7 +83,6 @@ const Game = (size) => {
   const playTurn = (coord, verbose = false) => {
     // TODO: Verify coordinate first
     // human attacks coordinate
-    // console.log(`Attacking coordinate ${coord}`);
     p1.attack(coord);
 
     // switch turn to ai
@@ -87,6 +115,7 @@ const Game = (size) => {
     getHitBoards,
     getPhase,
     createFleets,
+    placePlayerShip,
     switchTurn,
     whoseTurn,
     playTurn,
