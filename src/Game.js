@@ -17,6 +17,8 @@ const Game = (size) => {
   let p1ShipsToPlace = [];
   let p2ShipsToPlace = [];
 
+  let winner = '';
+
   const getPhase = () => phase;
 
   const createFleets = (shipSizes = [2, 3, 3, 4, 5]) => {
@@ -88,6 +90,13 @@ const Game = (size) => {
     }
   }
 
+  const declareWinner = (player) => {
+    winner = player;
+    phase = 'end';
+  }
+
+  const getWinner = () => { return winner; }
+
   const whoseTurn = () => {
     return turn;
   }
@@ -102,14 +111,25 @@ const Game = (size) => {
     // human attacks coordinate
     p1.attack(coord);
 
+    // check to see if the human won
+    if (gb2.areAllShipsSunk()) {
+      declareWinner('p1');
+      return true;
+    }
+
     // switch turn to ai
     turn = p2;
 
-    // wait a second
+    // TODO: wait a second? (or render a wait time?)
     
     // ai attacks human
     const randomCoord = p2.attack();
-    // console.log(`The computer attacked coordinate ${randomCoord}`);
+    
+    // check to see if ai won
+    if (gb1.areAllShipsSunk()) {
+      declareWinner('p2');
+      return true;
+    }
 
     // switch turn to human
     turn = p1;
@@ -136,6 +156,7 @@ const Game = (size) => {
     switchTurn,
     whoseTurn,
     playTurn,
+    getWinner,
   };
 
   

@@ -27,7 +27,7 @@ test('The game accumulates hits', () => {
   const game = Game(2);
   game.createFleets([1]);
   game.placePlayerShip(1, 'a1', 'down');
-  
+
   game.playTurn('a1');
   // game.playTurn('a2', true); // disabling to read other tests
   // I don't know how to write expect statement for console.log
@@ -126,3 +126,14 @@ test(`Game throws an error if you try to attack during ship placement phase`, ()
     game.playTurn('a1')
   }).toThrow();
 });
+
+test(`The game ends when all ships of either fleet are sunk`, () => {
+  const game = Game(1);
+  game.createFleets([1]);
+  game.placePlayerShip(1, 'a1', 'down');
+
+  game.playTurn('a1');
+  expect(game.getPhase()).toBe('end');
+  expect(game.getWinner()).toBe('p1');
+});
+
