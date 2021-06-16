@@ -29,8 +29,7 @@ const PegComponent = (props) => {
       onClick={ play }
       className="peg"
     >
-      {/* { hitCode() } */}
-      { ship }
+      { hitCode() }
     </div>
   );
 };

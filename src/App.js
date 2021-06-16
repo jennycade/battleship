@@ -38,14 +38,12 @@ function App() {
   }
 
   const attack = (coord = '') => {
+    console.log(`Attacking coord ${coord}`);
+    console.log(`Phase is ${phase}`);
     if (phase === 'attack') {
       // make the attack
-      if (coord !== '') {
-        setAttackCoord(coord);
-        const aiAttackCoord = game.playTurn(coord);
-      } else {
-        const aiAttackCoord = game.playTurn(attackCoord);
-      }
+      game.playTurn(coord);
+      
       // update gbs
       setBoards(game.getHitBoards());
 
