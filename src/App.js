@@ -14,6 +14,8 @@ function App() {
 
   const [boards, setBoards] = useState(game.getHitBoards());
 
+  const [shipsToPlace, setShipsToPlace] = useState(game.getShipsToPlace());
+
   const [attackCoord, setAttackCoord] = useState('');
 
   const placeShip = (ship, coord, dir) => {
@@ -23,6 +25,9 @@ function App() {
       
       // update phase
       setPhase(game.getPhase());
+
+      // update ships to place
+      setShipsToPlace(game.getShipsToPlace());
     }
   }
 
@@ -61,7 +66,7 @@ function App() {
       <div className="settings">
         <div className="shipsToPlace">
           <header>Click to place ship</header>
-          { game.getShipsToPlace().map((ship, index) => <ShipComponent key={index} size={ship} placeShip={placeShip} />)}
+          { shipsToPlace.map((ship, index) => <ShipComponent key={index} size={ship} placeShip={placeShip} />)}
         </div>
       </div>
       

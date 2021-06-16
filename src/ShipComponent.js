@@ -16,6 +16,8 @@ const ShipComponent = (props) => {
   const placeShip = () => {
     props.placeShip(size, coord, dir);
     toggleForm();
+
+    // TODO: Get this to re-render the shipPlacement div
   }
 
   const updateCoord = (e) => {
