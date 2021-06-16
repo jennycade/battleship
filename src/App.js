@@ -54,6 +54,13 @@ function App() {
     }
   }
 
+  const shipPlacementDiv = (
+    <div className="shipsToPlace">
+      <header>Click to place ship</header>
+      { shipsToPlace.map((ship, index) => <ShipComponent key={index} size={ship} placeShip={placeShip} />)}
+    </div>
+  );
+
   return (
     <div className="App">
       <header>BATTLESHIP</header>
@@ -72,10 +79,7 @@ function App() {
         />
       </div>
       <div className="settings">
-        <div className="shipsToPlace">
-          <header>Click to place ship</header>
-          { shipsToPlace.map((ship, index) => <ShipComponent key={index} size={ship} placeShip={placeShip} />)}
-        </div>
+        { phase==='placement' ? shipPlacementDiv : ''}
       </div>
       
     </div>
