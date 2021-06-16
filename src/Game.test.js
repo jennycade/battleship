@@ -134,6 +134,15 @@ test(`The game ends when all ships of either fleet are sunk`, () => {
 
   game.playTurn('a1');
   expect(game.getPhase()).toBe('end');
+});
+
+test(`A winner is declared when all ships of either fleet are sunk`, () => {
+  const game = Game(1);
+  game.createFleets([1]);
+  game.placePlayerShip(1, 'a1', 'down');
+
+  game.playTurn('a1');
+  
   expect(game.getWinner()).toBe('p1');
 });
 

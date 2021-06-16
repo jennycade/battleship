@@ -19,9 +19,11 @@ const Game = (size) => {
 
   let winner = '';
 
-  const getPhase = () => phase;
-
   const createFleets = (shipSizes = [2, 3, 3, 4, 5]) => {
+
+    // wipe the fleets first
+    p1ShipsToPlace = [];
+    p2ShipsToPlace = [];
 
     for (let i=0; i<shipSizes.length; i++) {
       // make a ship
@@ -36,6 +38,15 @@ const Game = (size) => {
     // remove from shipsToPlace
     p2ShipsToPlace = [];
 
+  }
+
+  // create fleets at game init
+  createFleets();
+
+  const getPhase = () => phase;
+
+  const getShipsToPlace = () => {
+    return p1ShipsToPlace.map(ship => ship.pegs.length);
   }
 
   const placePlayerShip = (shipSize, coord, dir) => {
@@ -76,6 +87,8 @@ const Game = (size) => {
       return false;
     }
   }
+
+  // TODO: unPlacePlayerShip() ?
 
   const getHitBoards = () => {
     return [gb1.getHitBoard(), gb2.getHitBoard()];
@@ -149,6 +162,7 @@ const Game = (size) => {
   return {
     getPlayers,
     getGameboards,
+    getShipsToPlace,
     getHitBoards,
     getPhase,
     createFleets,
