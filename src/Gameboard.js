@@ -120,6 +120,14 @@ const Gameboard = (size) => {
     return result;
   }
 
+  const getShipBoard = () => {
+    let result = {};
+    for (const coord in board) {
+      result[coord] = board[coord].ship ? 'S' : '';
+    }
+    return result;
+  }
+
   const printBoard = (who = 'opponent') => {
     // console.table(board);
     let str = '';
@@ -160,6 +168,7 @@ const Gameboard = (size) => {
     getCoords, getBoard,
     printBoard,
     getHitBoard,
+    getShipBoard,
   };
 }
 

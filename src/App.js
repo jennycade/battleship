@@ -14,6 +14,8 @@ function App() {
 
   const [boards, setBoards] = useState(game.getHitBoards());
 
+  const [shipBoard, setShipBoard] = useState(game.getShipBoard());
+
   const [shipsToPlace, setShipsToPlace] = useState(game.getShipsToPlace());
 
   const [attackCoord, setAttackCoord] = useState('');
@@ -25,9 +27,13 @@ function App() {
       
       // update phase
       setPhase(game.getPhase());
+      console.log(game.getPhase());
 
       // update ships to place
       setShipsToPlace(game.getShipsToPlace());
+
+      // update ship board
+      setShipBoard(game.getShipBoard());
     }
   }
 
@@ -54,11 +60,13 @@ function App() {
       <div className="boards">
         <GameboardComponent
           board={ boards[1] }
+          shipboard = { [] }
           owner="opponent"
           play={ attack }
         />
         <GameboardComponent
           board={ boards[0] }
+          shipboard={ shipBoard }
           owner="player"
           play={ attack }
         />

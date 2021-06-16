@@ -94,6 +94,11 @@ const Game = (size) => {
     return [gb1.getHitBoard(), gb2.getHitBoard()];
   }
 
+  const getShipBoard = () => {
+    // p1 only
+    return gb1.getShipBoard();
+  }
+
 
   const switchTurn = () => {
     if (turn === p1) {
@@ -164,6 +169,7 @@ const Game = (size) => {
     getGameboards,
     getShipsToPlace,
     getHitBoards,
+    getShipBoard,
     getPhase,
     createFleets,
     placePlayerShip,

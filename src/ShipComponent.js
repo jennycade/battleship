@@ -1,4 +1,3 @@
-import { setState } from 'expect';
 import { useState } from 'react';
 
 const ShipComponent = (props) => {
@@ -16,8 +15,6 @@ const ShipComponent = (props) => {
   const placeShip = () => {
     props.placeShip(size, coord, dir);
     toggleForm();
-
-    // TODO: Get this to re-render the shipPlacement div
   }
 
   const updateCoord = (e) => {
@@ -55,7 +52,7 @@ const ShipComponent = (props) => {
     backgroundColor: '#fff',
     color: '#000',
     marginTop: '0.5rem',
-    marginBottom: '0.5rem;'
+    marginBottom: '0.5rem'
   }
 
   const formStyle = {
@@ -64,7 +61,7 @@ const ShipComponent = (props) => {
     backgroundColor: '#fff',
     color: '#000',
     marginTop: '0.5rem',
-    marginBottom: '0.5rem;'
+    marginBottom: '0.5rem'
   }
 
   if (showForm) {
