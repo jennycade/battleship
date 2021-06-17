@@ -12,7 +12,8 @@ function App() {
   // game phase
   const [phase, setPhase] = useState(game.getPhase());
 
-  // 
+  // winner
+  const [winner, setWinner] = useState(game.getWinner());
 
   // boards states
   const [boards, setBoards] = useState(game.getHitBoards());
@@ -49,9 +50,21 @@ function App() {
       setBoards(game.getHitBoards());
 
       // update phase
-      setPhase(game.getPhase());
+      const newPhase = game.getPhase();
+      setPhase(newPhase);
+
+      // update winner?
+      if (newPhase==='end') {
+        setWinner(game.getWinner());
+      }
     }
   }
+
+  const winnerDiv = (
+    <div className="message">
+      {winner} wins!
+    </div>
+  )
 
   const shipPlacementDiv = (
     <div className="shipsToPlace">
@@ -62,6 +75,7 @@ function App() {
 
   return (
     <div className="App">
+      { winner !== '' ? winnerDiv : '' }
       <div className="boards">
         <GameboardComponent
           board={ boards[1] }
