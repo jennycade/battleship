@@ -28,6 +28,10 @@ const ShipComponent = (props) => {
     setCoord(e.target.value);
   }
 
+  const dirStyle = {
+    backgroundColor: '#00ff00',
+  }
+
   let assignForm = (
     <div className="shipPlacementForm">
       <label>
@@ -40,10 +44,10 @@ const ShipComponent = (props) => {
       </label>
       <label>
         DIRECTION
-        <button onClick={() => setDir('up')}>↑</button>
-        <button onClick={() => setDir('left')}>←</button>
-        <button onClick={() => setDir('right')}>→</button>
-        <button onClick={() => setDir('down')}>↓</button>
+        <button style={ dir==='up' ? dirStyle : {} } onClick={() => setDir('up')}>↑</button>
+        <button style={ dir==='left' ? dirStyle : {} } onClick={() => setDir('left')}>←</button>
+        <button style={ dir==='right' ? dirStyle : {} } onClick={() => setDir('right')}>→</button>
+        <button style={ dir==='down' ? dirStyle : {} } onClick={() => setDir('down')}>↓</button>
       </label>
       <button onClick={placeShip}>PLACE SHIP</button>
     </div>
@@ -60,6 +64,7 @@ const ShipComponent = (props) => {
     marginTop: '0.5rem',
     marginBottom: '0.5rem',
     borderRadius: '10% 10% 90% 90%',
+    // TODO: move this styling into CSS, if possible
   }
 
   const formStyle = {
