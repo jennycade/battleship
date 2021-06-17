@@ -4,7 +4,7 @@ const PegComponent = (props) => {
   const { coord, hit, ship, owner } = props
 
   const play = () => {
-    if (hit === '' && owner === 'opponent') {
+    if (hit === '') {
       props.play(coord);
     }
   }

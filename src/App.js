@@ -22,6 +22,8 @@ function App() {
   // ship placement
   const [shipsToPlace, setShipsToPlace] = useState(game.getShipsToPlace());
 
+  const [selectedCoord, setSelectedCoord] = useState('');
+
   const placeShip = (ship, coord, dir) => {
     if (phase === 'placement') {
       // TODO: check coordinates first?
@@ -60,6 +62,13 @@ function App() {
     }
   }
 
+  const chooseCoord = (newCoord) => {
+    // click a peg on your board, send it to ShipComponent
+    if (phase === 'placement') {
+      setSelectedCoord(newCoord);
+    }
+  }
+
   const winnerDiv = (
     <div className="message">
       {winner} wins!
@@ -69,7 +78,7 @@ function App() {
   const shipPlacementDiv = (
     <div className="shipsToPlace">
       <header>Click to place ship</header>
-      { shipsToPlace.map((ship, index) => <ShipComponent key={index} size={ship} placeShip={placeShip} />)}
+      { shipsToPlace.map((ship, index) => <ShipComponent key={index} size={ship} placeShip={placeShip} selectedCoord={selectedCoord} />)}
     </div>
   );
 
@@ -87,7 +96,7 @@ function App() {
           board={ boards[0] }
           shipboard={ shipBoard }
           owner="player"
-          play={ attack }
+          play={ chooseCoord }
         />
       </div>
       <div className="shipDiv">

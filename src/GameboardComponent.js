@@ -56,6 +56,7 @@ const GameboardComponent = (props) => {
               coord={coord}
               hit={board[coord]}
               // ship={owner==='player' ? shipboard[coord] : ''}
+              // TODO: write another way to do whatever this once did?
               ship={shipboard[coord]}
               play={play}
               owner={owner}

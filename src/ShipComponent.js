@@ -1,13 +1,10 @@
 import { useState } from 'react';
 
 const ShipComponent = (props) => {
-  const {size} = props
+  const {size, selectedCoord} = props
 
   const [showForm, setShowForm] = useState(false);
-
-  const defaultCoord = 'A1';
   
-  const [coord, setCoord] = useState(defaultCoord);
   const [dir, setDir] = useState('down');
 
   const toggleForm = () => {
@@ -15,23 +12,15 @@ const ShipComponent = (props) => {
   }
 
   const placeShip = () => {
-    // convert coord to lower case
-    const newCoord = coord.toLowerCase();
 
     // place Ship
-    props.placeShip(size, newCoord, dir);
+    props.placeShip(size, selectedCoord, dir);
 
     // hide form
     toggleForm();
 
     // unset the variables
-    setCoord(defaultCoord);
     setDir('');
-  }
-
-  const updateCoord = (e) => {
-    // verify coord first
-    setCoord(e.target.value);
   }
 
   const dirStyle = {
@@ -44,8 +33,7 @@ const ShipComponent = (props) => {
         STARTING COORDINATE
         <input
           type="text"
-          value={coord}
-          onChange={updateCoord}
+          value={selectedCoord}
         />
       </label>
       <label>
