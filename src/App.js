@@ -12,13 +12,14 @@ function App() {
   // game phase
   const [phase, setPhase] = useState(game.getPhase());
 
-  const [boards, setBoards] = useState(game.getHitBoards());
+  // 
 
+  // boards states
+  const [boards, setBoards] = useState(game.getHitBoards());
   const [shipBoard, setShipBoard] = useState(game.getShipBoard());
 
+  // ship placement
   const [shipsToPlace, setShipsToPlace] = useState(game.getShipsToPlace());
-
-  const [attackCoord, setAttackCoord] = useState('');
 
   const placeShip = (ship, coord, dir) => {
     if (phase === 'placement') {
@@ -61,7 +62,6 @@ function App() {
 
   return (
     <div className="App">
-      <header>BATTLESHIP</header>
       <div className="boards">
         <GameboardComponent
           board={ boards[1] }

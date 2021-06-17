@@ -4,8 +4,10 @@ const ShipComponent = (props) => {
   const {size} = props
 
   const [showForm, setShowForm] = useState(false);
+
+  const defaultCoord = 'A1';
   
-  const [coord, setCoord] = useState('A1');
+  const [coord, setCoord] = useState(defaultCoord);
   const [dir, setDir] = useState('down');
 
   const toggleForm = () => {
@@ -21,6 +23,10 @@ const ShipComponent = (props) => {
 
     // hide form
     toggleForm();
+
+    // unset the variables
+    setCoord(defaultCoord);
+    setDir('');
   }
 
   const updateCoord = (e) => {
