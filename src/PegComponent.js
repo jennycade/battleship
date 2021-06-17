@@ -1,9 +1,7 @@
-// import { useState, useEffect } from "react";
+// import { useState } from "react";
 
 const PegComponent = (props) => {
   const { coord, hit, ship, owner } = props
-
-  // const [mode, setMode] = useState(hit);
 
   const play = () => {
     if (hit === '' && owner === 'opponent') {
@@ -21,11 +19,11 @@ const PegComponent = (props) => {
     } else if (hit === 'miss') {
       return 'O';
     }
-    
   }
 
   return (
     <div key={ coord }
+      style={ hitCode() === 'X' ? {backgroundColor: 'red'} : hitCode() ==='S' ? {backgroundColor: '#00ff00'} : {color: 'white'}}
       onClick={ play }
       className="peg"
     >

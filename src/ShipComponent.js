@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { parseCoord } from './Helpers';
 
 const ShipComponent = (props) => {
   const {size} = props
@@ -13,7 +14,13 @@ const ShipComponent = (props) => {
   }
 
   const placeShip = () => {
-    props.placeShip(size, coord, dir);
+    // convert coord to lower case
+    const newCoord = coord.toLowerCase();
+
+    // place Ship
+    props.placeShip(size, newCoord, dir);
+
+    // hide form
     toggleForm();
   }
 
