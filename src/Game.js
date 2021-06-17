@@ -148,6 +148,11 @@ const Game = (size, ships = null) => {
     // human attacks coordinate
     p1.attack(coord);
 
+    // update sunk/live boats
+    p2LiveShips = gb2.getLiveShips().map(ship => ship.pegs.length);
+    p2SunkShips = gb2.getSunkShips().map(ship => ship.pegs.length);
+
+
     // check to see if the human won
     if (gb2.areAllShipsSunk()) {
       declareWinner('p1');
