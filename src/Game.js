@@ -16,6 +16,8 @@ const Game = (size, ships = null) => {
   let turn = p1;
   let p1ShipsToPlace = [];
   let p2ShipsToPlace = [];
+  let p2SunkShips = [];
+  let p2LiveShips = [];
 
   let winner = '';
 
@@ -24,6 +26,8 @@ const Game = (size, ships = null) => {
     // wipe the fleets first
     p1ShipsToPlace = [];
     p2ShipsToPlace = [];
+    p2SunkShips = [];
+    p2LiveShips = [];
 
     for (let i=0; i<shipSizes.length; i++) {
       // make a ship
@@ -33,11 +37,12 @@ const Game = (size, ships = null) => {
 
     phase = 'placement';
     // tell AI to place its ships
-
     p2.placeFleet(p2ShipsToPlace);
+
+    // copy over to p2LiveShips
+    p2LiveShips = p2ShipsToPlace.map(ship => ship.pegs.length);
     // remove from shipsToPlace
     p2ShipsToPlace = [];
-
   }
 
   // create fleets at game init
@@ -52,6 +57,16 @@ const Game = (size, ships = null) => {
   const getShipsToPlace = () => {
     return p1ShipsToPlace.map(ship => ship.pegs.length);
   }
+
+  const getP2SunkShips = () => {
+    return p2SunkShips;
+  }
+
+  const getP2LiveShips = () => {
+    return p2LiveShips;
+  }
+
+
 
   const placePlayerShip = (shipSize, coord, dir) => {
     // throw an error if it's not the placement phase
@@ -180,6 +195,8 @@ const Game = (size, ships = null) => {
     whoseTurn,
     playTurn,
     getWinner,
+    getP2SunkShips,
+    getP2LiveShips,
   };
 
   

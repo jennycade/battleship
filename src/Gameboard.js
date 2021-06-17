@@ -73,7 +73,14 @@ const Gameboard = (size) => {
     } else {
       board[coord].hit = 'miss';
     }
-    
+  }
+
+  const getLiveShips = () => {
+    return ships.filter(ship => ship.isSunk()===false);
+  }
+
+  const getSunkShips = () => {
+    return ships.filter(ship => ship.isSunk()===true);
   }
 
   const areAllShipsSunk = () => {
@@ -163,6 +170,8 @@ const Gameboard = (size) => {
     placeShip, 
     clearBoard,
     receiveAttack,
+    getLiveShips,
+    getSunkShips,
     areAllShipsSunk,
     query, verifyCoord, 
     getCoords, getBoard,

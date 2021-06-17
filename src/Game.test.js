@@ -139,5 +139,21 @@ test(`A winner is declared when all ships of either fleet are sunk`, () => {
 test(`Game returns no sunk boats at beginning of game`, () => {
   const game = Game(10);
 
-  expect(game.getp2SunkBoats()).toEqual([]);
+  expect(game.getP2SunkShips()).toEqual([]);
 });
+
+test(`Game returns all live boats at the beginning of the game`, () => {
+  const game = Game(10);
+
+  expect(game.getP2LiveShips()).toEqual([2, 3, 3, 4, 5]);
+});
+
+// test(`Game returns all ships sunk after literally every peg is hit`, () => {
+//   const game = Game(1, [1]);
+
+//   game.placePlayerShip(1, 'a1', 'down');
+//   game.playTurn('a1');
+
+//   expect(game.getP2LiveShips()).toEqual([]);
+//   expect(game.getP2SunkShips()).toEqual([1]);
+// });

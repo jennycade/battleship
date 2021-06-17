@@ -1,3 +1,4 @@
+import Game from './Game';
 import Gameboard from './Gameboard';
 import Ship from './Ship';
 
@@ -297,4 +298,40 @@ test('getHitBoard shows a miss', () => {
   const gb = Gameboard(2);
   gb.receiveAttack('a1');
   expect(gb.getHitBoard()).toMatchObject(board);
+});
+
+test(`Gameboard reports all live, no sunk ships at the beginning of the game`, () => {
+  const testShip = Ship(3);
+  const gb = Gameboard(5);
+  gb.placeShip(testShip, 'a1', 'down');
+  //   ABCDE
+  // 1 S----
+  // 2 S----
+  // 3 S----
+  // 4 -----
+  // 5 -----
+
+  expect(gb.getLiveShips()).toEqual([testShip]);
+  expect(gb.getSunkShips()).toEqual([]);
+});
+
+test(`Gameboard reports a sunk ship`, () => {
+  const testShip = Ship(3);
+  const testShip2 = Ship(3);
+  const gb = Gameboard(5);
+  gb.placeShip(testShip, 'a1', 'down');
+  gb.placeShip(testShip2, 'e5', 'up');
+  //   ABCDE
+  // 1 S----
+  // 2 S----
+  // 3 S---S
+  // 4 ----S
+  // 5 ----S
+
+  gb.receiveAttack('a1');
+  gb.receiveAttack('a2');
+  gb.receiveAttack('a3');
+
+  expect(gb.getLiveShips()).toEqual([testShip2]);
+  expect(gb.getSunkShips()).toEqual([testShip]);
 });
