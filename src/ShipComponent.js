@@ -58,7 +58,8 @@ const ShipComponent = (props) => {
     backgroundColor: '#fff',
     color: '#000',
     marginTop: '0.5rem',
-    marginBottom: '0.5rem'
+    marginBottom: '0.5rem',
+    borderRadius: '10% 10% 90% 90%',
   }
 
   const formStyle = {
@@ -67,7 +68,7 @@ const ShipComponent = (props) => {
     backgroundColor: '#fff',
     color: '#000',
     marginTop: '0.5rem',
-    marginBottom: '0.5rem'
+    marginBottom: '0.5rem',
   }
 
   if (showForm) {
