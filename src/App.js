@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import './App.css';
+import FleetComponent from './FleetComponent';
 import Game from './Game';
 import GameboardComponent from './GameboardComponent';
 import ShipComponent from './ShipComponent';
@@ -95,18 +96,6 @@ function App() {
 
   // TODO: Fix the way p2ShipsDiv is duplicating parts of the list.
 
-  const p2ShipsDiv = (
-    <div className="p2Ships">
-      <header>P2 Fleet</header>
-      <div className="liveShips">
-        <header>Live ships</header>
-        {p2LiveShips.map((size, index) => <li key={index}>{index}: {size}</li>)}
-        <header>Sunk ships</header>
-        {p2SunkShips.map((size, index) => <li key={index}>{index}: {size}</li>)}
-      </div>
-    </div>
-  );
-
   const shipPlacementDiv = (
     <div className="shipsToPlace">
       <header>Click to place ship</header>
@@ -144,7 +133,7 @@ function App() {
         />
       </div>
       <div className="shipDiv">
-        { phase==='placement' ? shipPlacementDiv : p2ShipsDiv}
+        { phase==='placement' ? shipPlacementDiv : <FleetComponent p2LiveShips={p2LiveShips} p2SunkShips={p2SunkShips} /> }
       </div>
       
     </div>
