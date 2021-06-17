@@ -9,7 +9,27 @@ body {
   text-align: center;
   perspective: 1000px;
   height: 100vh;
+
+  display: flex;
+  flex-wrap: wrap;
 }
+
+.boards {
+  flex-basis: min-content;
+  flex-shrink: 0;
+  flex-grow: 3;
+}
+
+.shipDiv {
+  flex-basis: min-content;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+.shipDiv header {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
 .gameboard {
   display: grid;
 /* TODO: make sure the grid doesn't change size to accomodate bigger content */
@@ -64,13 +84,6 @@ body {
 }
 
 .shipsToPlace {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 2;
-
-  background-color: rgba(255, 255, 255, 0.3);
-
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { parseCoord } from './Helpers';
 
 const ShipComponent = (props) => {
   const {size} = props

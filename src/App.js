@@ -76,7 +76,7 @@ function App() {
           play={ attack }
         />
       </div>
-      <div className="settings">
+      <div className="shipDiv">
         { phase==='placement' ? shipPlacementDiv : ''}
       </div>
       
