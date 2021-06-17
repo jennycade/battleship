@@ -2,7 +2,7 @@ import Gameboard from "./Gameboard";
 import Player from './Player';
 import Ship from './Ship';
 
-const Game = (size) => {
+const Game = (size, ships = null) => {
   const gb1 = Gameboard(size);
   const gb2 = Gameboard(size);
 
@@ -41,7 +41,11 @@ const Game = (size) => {
   }
 
   // create fleets at game init
-  createFleets();
+  if (ships) {
+    createFleets(ships);
+  } else {
+    createFleets();
+  }
 
   const getPhase = () => phase;
 
@@ -171,7 +175,6 @@ const Game = (size) => {
     getHitBoards,
     getShipBoard,
     getPhase,
-    createFleets,
     placePlayerShip,
     switchTurn,
     whoseTurn,

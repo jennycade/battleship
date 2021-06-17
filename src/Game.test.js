@@ -24,8 +24,8 @@ test('The game takes turns', () => {
 });
 
 test('The game accumulates hits', () => {
-  const game = Game(2);
-  game.createFleets([1]);
+  const game = Game(2, [1]);
+
   game.placePlayerShip(1, 'a1', 'down');
 
   game.playTurn('a1');
@@ -43,14 +43,13 @@ test('The game accumulates hits', () => {
 });
 
 test('getHitBoards returns a non-nested object representing the board', () => {
-  const game = Game(2);
+  const game = Game(2, [1]);
   const boards = game.getHitBoards();
   expect(boards.length).toBe(2);
 });
 
 test('Create the standard fleet', () => {
   const game = Game(10);
-  game.createFleets();
 
   expect(game.getPhase()).toBe('placement');
 
@@ -59,7 +58,6 @@ test('Create the standard fleet', () => {
 
 test(`Game handles player ship placement`, () => {
   const game = Game(10);
-  game.createFleets();
 
   game.placePlayerShip(2, 'a1', 'down');
   const board = game.getGameboards()[0].printBoard('self');
@@ -70,7 +68,6 @@ test(`Game handles player ship placement`, () => {
 
 test(`Game places multiple ships`, () => {
   const game = Game(10);
-  game.createFleets();
 
   game.placePlayerShip(2, 'a1', 'down');
   game.placePlayerShip(3, 'b2', 'right');
@@ -83,7 +80,6 @@ test(`Game places multiple ships`, () => {
 
 test(`Game switches to attack mode when all player ships ar placed`, () => {
   const game = Game(10);
-  game.createFleets();
 
   game.placePlayerShip(2, 'a1', 'down');
   game.placePlayerShip(3, 'b1', 'down');
@@ -96,7 +92,6 @@ test(`Game switches to attack mode when all player ships ar placed`, () => {
 
 test(`Game lets you try again if you try to place a ship off the board`, () => {
   const game = Game(10);
-  game.createFleets();
 
   game.placePlayerShip(2, 'a1', 'up');
   expect(game.placePlayerShip(2, 'a1', 'down')).toBe(true);
@@ -104,7 +99,6 @@ test(`Game lets you try again if you try to place a ship off the board`, () => {
 
 test(`Game doesn't let player place a ship on top of another ship`, () => {
   const game = Game(10);
-  game.createFleets();
 
   game.placePlayerShip(2, 'a1', 'down');
   expect(game.placePlayerShip(3, 'a1', 'down')).toBe(false);
@@ -112,7 +106,6 @@ test(`Game doesn't let player place a ship on top of another ship`, () => {
 
 test(`Can't place the same ship twice`, () => {
   const game = Game(10);
-  game.createFleets();
 
   game.placePlayerShip(2, 'a1', 'down');
   expect(game.placePlayerShip(2, 'j1', 'down')).toBe(false);
@@ -120,7 +113,6 @@ test(`Can't place the same ship twice`, () => {
 
 test(`Game throws an error if you try to attack during ship placement phase`, () => {
   const game = Game(10);
-  game.createFleets();
 
   expect(() => {
     game.playTurn('a1')
@@ -128,8 +120,7 @@ test(`Game throws an error if you try to attack during ship placement phase`, ()
 });
 
 test(`The game ends when all ships of either fleet are sunk`, () => {
-  const game = Game(1);
-  game.createFleets([1]);
+  const game = Game(1, [1]);
   game.placePlayerShip(1, 'a1', 'down');
 
   game.playTurn('a1');
@@ -137,8 +128,7 @@ test(`The game ends when all ships of either fleet are sunk`, () => {
 });
 
 test(`A winner is declared when all ships of either fleet are sunk`, () => {
-  const game = Game(1);
-  game.createFleets([1]);
+  const game = Game(1, [1]);
   game.placePlayerShip(1, 'a1', 'down');
 
   game.playTurn('a1');
@@ -146,3 +136,8 @@ test(`A winner is declared when all ships of either fleet are sunk`, () => {
   expect(game.getWinner()).toBe('p1');
 });
 
+test(`Game returns no sunk boats at beginning of game`, () => {
+  const game = Game(10);
+
+  expect(game.getp2SunkBoats()).toEqual([]);
+});

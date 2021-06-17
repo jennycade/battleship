@@ -24,6 +24,18 @@ function App() {
 
   const [selectedCoord, setSelectedCoord] = useState('');
 
+  const startNewGame = () => {
+    const newGame = Game(10);
+    setGame(newGame);
+    setPhase(newGame.getPhase());
+    setWinner(newGame.getWinner());
+    setBoards(newGame.getHitBoards());
+    setShipBoard(newGame.getShipBoard());
+    setShipsToPlace(newGame.getShipsToPlace());
+    setSelectedCoord('');
+    
+  }
+
   const placeShip = (ship, coord, dir) => {
     if (phase === 'placement') {
       // TODO: check coordinates first?
@@ -71,9 +83,15 @@ function App() {
 
   const winnerDiv = (
     <div className="message">
-      {winner} wins!
+      <p>
+        {winner} wins!
+      </p>
+      <button onClick={startNewGame} >
+        New game
+      </button>
+
     </div>
-  )
+  );
 
   const shipPlacementDiv = (
     <div className="shipsToPlace">
