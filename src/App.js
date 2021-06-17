@@ -24,6 +24,10 @@ function App() {
 
   const [selectedCoord, setSelectedCoord] = useState('');
 
+  // p2 live/sunk ships
+  const [p2LiveShips, setP2LiveShips] = useState(game.getP2LiveShips());
+  const [p2SunkShips, setP2SunkShips] = useState(game.getP2SunkShips());
+
   const startNewGame = () => {
     const newGame = Game(10);
     setGame(newGame);
@@ -32,6 +36,9 @@ function App() {
     setBoards(newGame.getHitBoards());
     setShipBoard(newGame.getShipBoard());
     setShipsToPlace(newGame.getShipsToPlace());
+    setP2LiveShips(game.getP2LiveShips());
+    setP2SunkShips(game.getP2SunkShips());
+
     setSelectedCoord('');
     
   }
@@ -39,6 +46,7 @@ function App() {
   const placeShip = (ship, coord, dir) => {
     if (phase === 'placement') {
       // TODO: check coordinates first?
+      // TODO: Fix the bug - if no direction is selected it places a ship of length one
       game.placePlayerShip(ship, coord, dir);
       
       // update phase
@@ -63,6 +71,10 @@ function App() {
       // update gbs
       setBoards(game.getHitBoards());
 
+      // update p2 ships
+      setP2LiveShips(game.getP2LiveShips());
+      setP2SunkShips(game.getP2SunkShips());
+
       // update phase
       const newPhase = game.getPhase();
       setPhase(newPhase);
@@ -81,6 +93,27 @@ function App() {
     }
   }
 
+  // TODO: Fix the way p2ShipsDiv is duplicating parts of the list.
+
+  const p2ShipsDiv = (
+    <div className="p2Ships">
+      <header>P2 Fleet</header>
+      <div className="liveShips">
+        <header>Live ships</header>
+        {p2LiveShips.map((size, index) => <li key={index}>{index}: {size}</li>)}
+        <header>Sunk ships</header>
+        {p2SunkShips.map((size, index) => <li key={index}>{index}: {size}</li>)}
+      </div>
+    </div>
+  );
+
+  const shipPlacementDiv = (
+    <div className="shipsToPlace">
+      <header>Click to place ship</header>
+      { shipsToPlace.map((ship, index) => <ShipComponent key={index} size={ship} placeShip={placeShip} selectedCoord={selectedCoord} />)}
+    </div>
+  );
+
   const winnerDiv = (
     <div className="message">
       <p>
@@ -90,13 +123,6 @@ function App() {
         New game
       </button>
 
-    </div>
-  );
-
-  const shipPlacementDiv = (
-    <div className="shipsToPlace">
-      <header>Click to place ship</header>
-      { shipsToPlace.map((ship, index) => <ShipComponent key={index} size={ship} placeShip={placeShip} selectedCoord={selectedCoord} />)}
     </div>
   );
 
@@ -118,7 +144,7 @@ function App() {
         />
       </div>
       <div className="shipDiv">
-        { phase==='placement' ? shipPlacementDiv : ''}
+        { phase==='placement' ? shipPlacementDiv : p2ShipsDiv}
       </div>
       
     </div>

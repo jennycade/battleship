@@ -34,6 +34,7 @@ const ShipComponent = (props) => {
         <input
           type="text"
           value={selectedCoord}
+          readOnly
         />
       </label>
       <label>
